@@ -344,11 +344,26 @@ export default function Home() {
     const text = heroTitleRef.current.textContent || "";
     heroTitleRef.current.innerHTML = "";
 
+    // Pride Month rainbow colors
+    const prideColors = [
+      "#FF0018", // Red
+      "#FFA52C", // Orange
+      "#FFFF41", // Yellow
+      "#008018", // Green
+      "#0000F9", // Blue
+      "#86007D", // Purple
+    ];
+
+    // Find the word "Creative" in the text (case insensitive)
+    const textLower = text.toLowerCase();
+    const creativeStartIndex = textLower.indexOf("creative");
+    const creativeEndIndex = creativeStartIndex !== -1 ? creativeStartIndex + "creative".length : -1;
+
     // Split text into characters and wrap each in a span
     const chars = text.split("");
     const spans: HTMLSpanElement[] = [];
 
-    chars.forEach((char) => {
+    chars.forEach((char, index) => {
       const span = document.createElement("span");
       if (char === " ") {
         span.textContent = "\u00A0";
@@ -361,6 +376,12 @@ export default function Home() {
       } else {
         span.textContent = char;
         span.style.display = "inline-block";
+        
+        // Apply rainbow colors to "Creative" word
+        if (creativeStartIndex !== -1 && index >= creativeStartIndex && index < creativeEndIndex) {
+          const colorIndex = (index - creativeStartIndex) % prideColors.length;
+          span.style.color = prideColors[colorIndex];
+        }
       }
       span.style.willChange = "transform, opacity, filter";
       heroTitleRef.current?.appendChild(span);
