@@ -872,6 +872,14 @@ export default function Home() {
           className="relative z-10 w-full px-6 md:px-12 py-24 md:py-32 bg-background-light dark:bg-background-dark"
         >
           <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="mb-20">
+              <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
+                Our Services
+              </h2>
+              <div className="w-full h-[1px] bg-gray-200 dark:bg-gray-800 mt-6"></div>
+            </div>
+            
             {/* Top Three Blocks */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
               {/* Left Block - Dark Card with Toggle */}
