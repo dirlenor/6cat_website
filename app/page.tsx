@@ -27,34 +27,46 @@ export default function Home() {
     setDarkMode(isDark);
 
     // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
-    } as any);
+    try {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      } as any);
 
-    lenisRef.current = lenis;
+      lenisRef.current = lenis;
 
-    // Connect Lenis with GSAP ScrollTrigger
-    function raf(time: number) {
-      lenis.raf(time);
+      // Connect Lenis with GSAP ScrollTrigger
+      function raf(time: number) {
+        if (lenisRef.current) {
+          lenisRef.current.raf(time);
+          requestAnimationFrame(raf);
+        }
+      }
+
       requestAnimationFrame(raf);
+
+      // Update ScrollTrigger when Lenis scrolls
+      lenis.on("scroll", ScrollTrigger.update);
+
+      // Cleanup
+      return () => {
+        try {
+          if (lenisRef.current) {
+            lenisRef.current.destroy();
+          }
+        } catch (error) {
+          console.error("Error destroying Lenis:", error);
+        }
+      };
+    } catch (error) {
+      console.error("Error initializing Lenis:", error);
     }
-
-    requestAnimationFrame(raf);
-
-    // Update ScrollTrigger when Lenis scrolls
-    lenis.on("scroll", ScrollTrigger.update);
-
-    // Cleanup
-    return () => {
-      lenis.destroy();
-    };
   }, []);
 
   useEffect(() => {
@@ -336,153 +348,172 @@ export default function Home() {
   useEffect(() => {
     if (!heroTitleRef.current) return;
 
-    // Set initial opacity to 0
-    gsap.set(heroTitleRef.current, { opacity: 0 });
-
-    // Get text content and preserve line breaks
+    // Get text content and preserve line breaks (outside try block for scope)
     const originalHTML = heroTitleRef.current.innerHTML;
-    const text = heroTitleRef.current.textContent || "";
-    heroTitleRef.current.innerHTML = "";
 
-    // Pride Month rainbow colors
-    const prideColors = [
-      "#FF0018", // Red
-      "#FFA52C", // Orange
-      "#FFFF41", // Yellow
-      "#008018", // Green
-      "#0000F9", // Blue
-      "#86007D", // Purple
-    ];
+    try {
+      // Set initial opacity to 0
+      gsap.set(heroTitleRef.current, { opacity: 0 });
 
-    // Find the word "Creative" in the text (case insensitive)
-    const textLower = text.toLowerCase();
-    const creativeStartIndex = textLower.indexOf("creative");
-    const creativeEndIndex = creativeStartIndex !== -1 ? creativeStartIndex + "creative".length : -1;
+      const text = heroTitleRef.current.textContent || "";
+      
+      if (!text) return;
+      
+      heroTitleRef.current.innerHTML = "";
 
-    // Split text into characters and wrap each in a span
-    const chars = text.split("");
-    const spans: HTMLSpanElement[] = [];
+      // Pride Month rainbow colors
+      const prideColors = [
+        "#FF0018", // Red
+        "#FFA52C", // Orange
+        "#FFFF41", // Yellow
+        "#008018", // Green
+        "#0000F9", // Blue
+        "#86007D", // Purple
+      ];
 
-    chars.forEach((char, index) => {
-      const span = document.createElement("span");
-      if (char === " ") {
-        span.textContent = "\u00A0";
-        span.style.width = "0.25em"; // Add width for space
-        span.style.display = "inline-block";
-      } else if (char === "\n") {
-        const br = document.createElement("br");
-        heroTitleRef.current?.appendChild(br);
-        return;
-      } else {
-        span.textContent = char;
-        span.style.display = "inline-block";
-        
-        // Apply rainbow colors to "Creative" word
-        if (creativeStartIndex !== -1 && index >= creativeStartIndex && index < creativeEndIndex) {
-          const colorIndex = (index - creativeStartIndex) % prideColors.length;
-          span.style.color = prideColors[colorIndex];
-        }
-      }
-      span.style.willChange = "transform, opacity, filter";
-      heroTitleRef.current?.appendChild(span);
-      spans.push(span);
-    });
+      // Find the word "Creative" in the text (case insensitive)
+      const textLower = text.toLowerCase();
+      const creativeStartIndex = textLower.indexOf("creative");
+      const creativeEndIndex = creativeStartIndex !== -1 ? creativeStartIndex + "creative".length : -1;
 
-    // Set initial state with random positions and blur
-    spans.forEach((span) => {
-      const randomX = (Math.random() - 0.5) * 300; // -150 to 150
-      const randomY = (Math.random() - 0.5) * 300; // -150 to 150
-      const randomZ = -800 - Math.random() * 700; // -800 to -1500
-      const randomRotationX = (Math.random() - 0.5) * 180; // -90 to 90
-      const randomRotationY = (Math.random() - 0.5) * 180; // -90 to 90
+      // Split text into characters and wrap each in a span
+      const chars = text.split("");
+      const spans: HTMLSpanElement[] = [];
 
-      gsap.set(span, {
-        x: randomX,
-        y: randomY,
-        z: randomZ,
-        rotationX: randomRotationX,
-        rotationY: randomRotationY,
-        opacity: 0,
-        filter: "blur(25px)",
-        transformStyle: "preserve-3d",
-      });
-    });
-
-    // Animate scrolling text immediately
-    if (scrollingTextRef.current) {
-      const scrollingTexts = scrollingTextRef.current.querySelectorAll("h1");
-      scrollingTexts.forEach((text) => {
-        const originalText = text.textContent || "";
-        const chars = originalText.split("");
-        text.innerHTML = "";
-        
-        chars.forEach((char) => {
-          const span = document.createElement("span");
-          span.textContent = char === " " ? "\u00A0" : char;
+      chars.forEach((char, index) => {
+        const span = document.createElement("span");
+        if (char === " ") {
+          span.textContent = "\u00A0";
+          span.style.width = "0.25em"; // Add width for space
           span.style.display = "inline-block";
-          span.style.transformOrigin = "center bottom";
-          text.appendChild(span);
-        });
-        
-        const charSpans = Array.from(text.querySelectorAll("span"));
-        
-        // Set initial state - small and centered at bottom, invisible
-        gsap.set(charSpans, {
-          scale: 0.05,
+        } else if (char === "\n") {
+          const br = document.createElement("br");
+          heroTitleRef.current?.appendChild(br);
+          return;
+        } else {
+          span.textContent = char;
+          span.style.display = "inline-block";
+          
+          // Apply rainbow colors to "Creative" word
+          if (creativeStartIndex !== -1 && index >= creativeStartIndex && index < creativeEndIndex) {
+            const colorIndex = (index - creativeStartIndex) % prideColors.length;
+            span.style.color = prideColors[colorIndex];
+          }
+        }
+        span.style.willChange = "transform, opacity, filter";
+        if (heroTitleRef.current) {
+          heroTitleRef.current.appendChild(span);
+        }
+        spans.push(span);
+      });
+
+      // Set initial state with random positions and blur
+      spans.forEach((span) => {
+        const randomX = (Math.random() - 0.5) * 300; // -150 to 150
+        const randomY = (Math.random() - 0.5) * 300; // -150 to 150
+        const randomZ = -800 - Math.random() * 700; // -800 to -1500
+        const randomRotationX = (Math.random() - 0.5) * 180; // -90 to 90
+        const randomRotationY = (Math.random() - 0.5) * 180; // -90 to 90
+
+        gsap.set(span, {
+          x: randomX,
+          y: randomY,
+          z: randomZ,
+          rotationX: randomRotationX,
+          rotationY: randomRotationY,
           opacity: 0,
-          y: window.innerHeight * 0.3, // Position at bottom center
-          x: 0,
-        });
-        
-        // Animate to large and scroll position (stack effect)
-        gsap.to(charSpans, {
-          scale: 1,
-          opacity: 0.9,
-          y: 0,
-          x: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          stagger: {
-            amount: 2,
-            from: "start",
-          },
+          filter: "blur(25px)",
+          transformStyle: "preserve-3d",
         });
       });
-    }
 
-    // Show the container first, then animate spans with delay
-    gsap.to(heroTitleRef.current, {
-      opacity: 1,
-      duration: 0.01,
-      delay: 0.4,
-      onComplete: () => {
-        // Animate all spans after delay
-        gsap.to(spans, {
-          x: 0,
-          y: 0,
-          z: 0,
-          rotationX: 0,
-          rotationY: 0,
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 1.8,
-          ease: "power3.out",
-          stagger: {
-            amount: 2,
-            from: "random",
-          },
-          onComplete: () => {
-            spans.forEach((span) => {
-              span.style.willChange = "auto";
-            });
-          },
+      // Animate scrolling text immediately
+      if (scrollingTextRef.current) {
+        const scrollingTexts = scrollingTextRef.current.querySelectorAll("h1");
+        scrollingTexts.forEach((text) => {
+          const originalText = text.textContent || "";
+          const chars = originalText.split("");
+          text.innerHTML = "";
+          
+          chars.forEach((char) => {
+            const span = document.createElement("span");
+            span.textContent = char === " " ? "\u00A0" : char;
+            span.style.display = "inline-block";
+            span.style.transformOrigin = "center bottom";
+            text.appendChild(span);
+          });
+          
+          const charSpans = Array.from(text.querySelectorAll("span"));
+          
+          // Set initial state - small and centered at bottom, invisible
+          gsap.set(charSpans, {
+            scale: 0.05,
+            opacity: 0,
+            y: window.innerHeight * 0.3, // Position at bottom center
+            x: 0,
+          });
+          
+          // Animate to large and scroll position (stack effect)
+          gsap.to(charSpans, {
+            scale: 1,
+            opacity: 0.9,
+            y: 0,
+            x: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            stagger: {
+              amount: 2,
+              from: "start",
+            },
+          });
         });
-      },
-    });
+      }
+
+      // Show the container first, then animate spans with delay
+      gsap.to(heroTitleRef.current, {
+        opacity: 1,
+        duration: 0.01,
+        delay: 0.4,
+        onComplete: () => {
+          // Animate all spans after delay
+          gsap.to(spans, {
+            x: 0,
+            y: 0,
+            z: 0,
+            rotationX: 0,
+            rotationY: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1.8,
+            ease: "power3.out",
+            stagger: {
+              amount: 2,
+              from: "random",
+            },
+            onComplete: () => {
+              spans.forEach((span) => {
+                span.style.willChange = "auto";
+              });
+            },
+          });
+        },
+      });
+    } catch (error) {
+      console.error("Error in hero title animation:", error);
+      // Fallback: restore original HTML if error occurs
+      if (heroTitleRef.current) {
+        heroTitleRef.current.innerHTML = originalHTML;
+        heroTitleRef.current.style.opacity = "1";
+      }
+    }
 
     return () => {
       if (heroTitleRef.current) {
-        heroTitleRef.current.innerHTML = originalHTML;
+        try {
+          heroTitleRef.current.innerHTML = originalHTML;
+        } catch (error) {
+          console.error("Error cleaning up hero title:", error);
+        }
       }
     };
   }, []);
