@@ -361,16 +361,6 @@ export default function Home() {
       
       heroTitleRef.current.innerHTML = "";
 
-      // Pride Month rainbow colors
-      const prideColors = [
-        "#FF0018", // Red
-        "#FFA52C", // Orange
-        "#FFFF41", // Yellow
-        "#008018", // Green
-        "#0000F9", // Blue
-        "#86007D", // Purple
-      ];
-
       // Find the word "Creative" in the text (case insensitive)
       const textLower = text.toLowerCase();
       const creativeStartIndex = textLower.indexOf("creative");
@@ -394,10 +384,9 @@ export default function Home() {
           span.textContent = char;
           span.style.display = "inline-block";
           
-          // Apply rainbow colors to "Creative" word
+          // Apply italic style to "Creative" word
           if (creativeStartIndex !== -1 && index >= creativeStartIndex && index < creativeEndIndex) {
-            const colorIndex = (index - creativeStartIndex) % prideColors.length;
-            span.style.color = prideColors[colorIndex];
+            span.style.fontStyle = "italic";
           }
         }
         span.style.willChange = "transform, opacity, filter";
