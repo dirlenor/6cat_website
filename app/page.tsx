@@ -25,9 +25,6 @@ export default function Home() {
   const scrollingTextRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const projectsSectionRef = useRef<HTMLElement>(null);
-  const projectsProgressTextRef = useRef<HTMLSpanElement>(null);
-  const projectsProgressFillRef = useRef<HTMLDivElement>(null);
-  const projectsBgRef = useRef<HTMLDivElement>(null);
   const projectsTitleRef = useRef<HTMLHeadingElement>(null);
   const projectsTrackRef = useRef<HTMLDivElement>(null);
   const projectsPinRef = useRef<HTMLDivElement>(null);
@@ -46,7 +43,6 @@ export default function Home() {
   usePageAnimations({
     heroTitleText: t.hero.title,
     statsSectionRef,
-    statsGridRef,
     typingTextRef,
     progressBarRef,
     expertiseSectionRef,
@@ -56,9 +52,6 @@ export default function Home() {
     scrollingTextRef,
     heroSectionRef,
     projectsSectionRef,
-    projectsProgressTextRef,
-    projectsProgressFillRef,
-    projectsBgRef,
     projectsTitleRef,
     projectsTrackRef,
     projectsPinRef,
@@ -131,7 +124,6 @@ export default function Home() {
 
   return (
     <div className={language === "th" ? "font-anuphan" : ""}>
-      <div ref={projectsBgRef} className="fixed inset-0 pointer-events-none z-0 bg-black opacity-0"></div>
       <div className="fixed inset-0 pointer-events-none z-[1] light-mode-grid dark:dark-mode-grid grid-background w-full h-full"></div>
 
       <SiteHeader
@@ -170,12 +162,11 @@ export default function Home() {
         <ProjectsStorySection
           t={t}
           sectionRef={projectsSectionRef}
-          progressTextRef={projectsProgressTextRef}
-          progressFillRef={projectsProgressFillRef}
           titleRef={projectsTitleRef}
           trackRef={projectsTrackRef}
           pinRef={projectsPinRef}
         />
+
       </main>
     </div>
   );

@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 type UsePageAnimationsOptions = {
   heroTitleText: string;
   statsSectionRef: React.RefObject<HTMLElement>;
-  statsGridRef: React.RefObject<HTMLDivElement>;
   typingTextRef: React.RefObject<HTMLParagraphElement>;
   progressBarRef: React.RefObject<HTMLDivElement>;
   expertiseSectionRef: React.RefObject<HTMLElement>;
@@ -20,9 +19,6 @@ type UsePageAnimationsOptions = {
   scrollingTextRef: React.RefObject<HTMLDivElement>;
   heroSectionRef: React.RefObject<HTMLElement>;
   projectsSectionRef: React.RefObject<HTMLElement>;
-  projectsProgressTextRef: React.RefObject<HTMLSpanElement>;
-  projectsProgressFillRef: React.RefObject<HTMLDivElement>;
-  projectsBgRef: React.RefObject<HTMLDivElement>;
   projectsTitleRef: React.RefObject<HTMLHeadingElement>;
   projectsTrackRef: React.RefObject<HTMLDivElement>;
   projectsPinRef: React.RefObject<HTMLDivElement>;
@@ -31,7 +27,6 @@ type UsePageAnimationsOptions = {
 export const usePageAnimations = ({
   heroTitleText,
   statsSectionRef,
-  statsGridRef,
   typingTextRef,
   progressBarRef,
   expertiseSectionRef,
@@ -41,9 +36,6 @@ export const usePageAnimations = ({
   scrollingTextRef,
   heroSectionRef,
   projectsSectionRef,
-  projectsProgressTextRef,
-  projectsProgressFillRef,
-  projectsBgRef,
   projectsTitleRef,
   projectsTrackRef,
   projectsPinRef,
@@ -551,31 +543,24 @@ export const usePageAnimations = ({
   useEffect(() => {
     if (
       !projectsSectionRef.current ||
-      !projectsBgRef.current ||
-      !statsGridRef.current ||
       !projectsTitleRef.current ||
       !projectsTrackRef.current ||
       !projectsPinRef.current
     )
       return;
 
-    const transitionTween = gsap.to(projectsBgRef.current, {
-      opacity: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: statsGridRef.current,
-        start: "top top",
-        end: "top+=80vh top",
-        scrub: 1.8,
-      },
-    });
-
     const getStartX = () => {
       const firstCard =
         projectsTrackRef.current?.querySelector<HTMLElement>(".project-card");
       if (!firstCard || !projectsPinRef.current) return 0;
-      const leftOffset = firstCard.offsetLeft;
-      return -leftOffset;
+      const pinRect = projectsPinRef.current.getBoundingClientRect();
+      const header = projectsPinRef.current.querySelector<HTMLElement>(
+        ".projects-header-inner"
+      );
+      const headerLeft = header
+        ? header.getBoundingClientRect().left - pinRect.left
+        : 0;
+      return headerLeft - firstCard.offsetLeft;
     };
 
     const getEndX = () => {
@@ -584,41 +569,22 @@ export const usePageAnimations = ({
         projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card");
       const lastCard = cards[cards.length - 1];
       if (!lastCard) return 0;
-      const pinWidth = projectsPinRef.current.clientWidth;
+      const pinRect = projectsPinRef.current.getBoundingClientRect();
+      const header = projectsPinRef.current.querySelector<HTMLElement>(
+        ".projects-header-inner"
+      );
+      const headerRight = header
+        ? header.getBoundingClientRect().right - pinRect.left
+        : projectsPinRef.current.clientWidth;
       const lastRight = lastCard.offsetLeft + lastCard.clientWidth;
-      return pinWidth - lastRight;
+      return headerRight - lastRight;
     };
 
     const getHoldDistance = () => Math.max(0, window.innerHeight * 0.5);
     const getScrollDistance = () =>
-      getHoldDistance() + Math.abs(getEndX() - getStartX());
-
-    const resetTween = gsap.to(projectsBgRef.current, {
-      opacity: 0,
-      ease: "none",
-      scrollTrigger: {
-        trigger: projectsSectionRef.current,
-        start: () => `top+=${getScrollDistance()} top`,
-        end: () => `top+=${getScrollDistance() + window.innerHeight * 0.8} top`,
-        scrub: 1.8,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    const progressTrigger = ScrollTrigger.create({
-      trigger: projectsSectionRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      onUpdate: (self) => {
-        const progress = Math.round(self.progress * 100);
-        if (projectsProgressTextRef.current) {
-          projectsProgressTextRef.current.textContent = `${progress}%`;
-        }
-        if (projectsProgressFillRef.current) {
-          projectsProgressFillRef.current.style.width = `${progress}%`;
-        }
-      },
-    });
+      getHoldDistance() +
+      Math.abs(getEndX() - getStartX()) +
+      window.innerWidth * 0.2;
 
     const projectCards = Array.from(
       projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card")
@@ -640,21 +606,9 @@ export const usePageAnimations = ({
       },
     });
 
-    const titleRevealTween = gsap.fromTo(
-      projectsTitleRef.current,
-      { opacity: 0, x: -80 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1.6,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: statsGridRef.current,
-          start: "bottom top",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    if (projectsTitleRef.current) {
+      gsap.set(projectsTitleRef.current, { opacity: 1, x: 0 });
+    }
 
     gsap.set(projectsTrackRef.current, { x: getStartX() });
 
@@ -688,27 +642,13 @@ export const usePageAnimations = ({
       });
 
     return () => {
-      transitionTween.scrollTrigger?.kill();
-      transitionTween.kill();
-      resetTween.scrollTrigger?.kill();
-      resetTween.kill();
-      progressTrigger.kill();
       cardsRevealTween.scrollTrigger?.kill();
       cardsRevealTween.kill();
-      titleRevealTween.scrollTrigger?.kill();
-      titleRevealTween.kill();
       horizontalTimeline.scrollTrigger?.kill();
       horizontalTimeline.kill();
-      if (projectsBgRef.current) {
-        projectsBgRef.current.style.opacity = "0";
-      }
     };
   }, [
-    statsGridRef,
-    projectsProgressFillRef,
-    projectsProgressTextRef,
     projectsSectionRef,
-    projectsBgRef,
     projectsTitleRef,
     projectsTrackRef,
     projectsPinRef,
