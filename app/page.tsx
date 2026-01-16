@@ -77,16 +77,16 @@ export default function Home() {
       document.body.classList.add("font-anuphan");
       document.body.style.fontFamily = "Anuphan, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
       document.body.style.fontFeatureSettings = '"liga" 1, "calt" 1';
-      document.body.style.webkitFontSmoothing = "antialiased";
-      document.body.style.mozFontSmoothing = "grayscale";
+      document.body.style.setProperty("-webkit-font-smoothing", "antialiased");
+      document.body.style.setProperty("-moz-osx-font-smoothing", "grayscale");
     } else {
       document.documentElement.setAttribute("lang", "en");
       document.documentElement.classList.remove("font-thai");
       document.body.classList.remove("font-anuphan");
       document.body.style.fontFamily = "";
       document.body.style.fontFeatureSettings = "";
-      document.body.style.webkitFontSmoothing = "";
-      document.body.style.mozFontSmoothing = "";
+      document.body.style.removeProperty("-webkit-font-smoothing");
+      document.body.style.removeProperty("-moz-osx-font-smoothing");
     }
   };
 
@@ -98,16 +98,16 @@ export default function Home() {
       document.body.classList.add("font-anuphan");
       document.body.style.fontFamily = "Anuphan, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
       document.body.style.fontFeatureSettings = '"liga" 1, "calt" 1';
-      document.body.style.webkitFontSmoothing = "antialiased";
-      document.body.style.mozFontSmoothing = "grayscale";
+      document.body.style.setProperty("-webkit-font-smoothing", "antialiased");
+      document.body.style.setProperty("-moz-osx-font-smoothing", "grayscale");
     } else {
       document.documentElement.setAttribute("lang", "en");
       document.documentElement.classList.remove("font-thai");
       document.body.classList.remove("font-anuphan");
       document.body.style.fontFamily = "";
       document.body.style.fontFeatureSettings = "";
-      document.body.style.webkitFontSmoothing = "";
-      document.body.style.mozFontSmoothing = "";
+      document.body.style.removeProperty("-webkit-font-smoothing");
+      document.body.style.removeProperty("-moz-osx-font-smoothing");
     }
   }, [language]);
 
