@@ -47,6 +47,28 @@
     opacity: 1;
   }
 
+  .project-track {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .project-card {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  @media (min-width: 1200px) and (max-width: 1700px) {
+    .project-card {
+      height: 63vh;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1199px) {
+    .project-card {
+      height: 50vh;
+    }
+  }
+
 
   /* Apply Anuphan font when Thai language is selected - with higher specificity */
   html.font-thai *,

@@ -82,7 +82,7 @@ export default function ProjectsStorySection({
           <div className="absolute left-8 right-8 top-[calc(60px+2.5rem+40px)] flex items-center gap-6">
             <h2
               ref={titleRef}
-              className="text-white font-display text-4xl md:text-[32px] lg:text-9xl font-bold opacity-0 flex-1 min-w-0 leading-[0.9] whitespace-nowrap"
+              className="text-white font-display text-4xl md:text-[32px] lg:text-[80px] font-bold opacity-0 flex-1 min-w-0 leading-[0.9] whitespace-nowrap"
             >
               {t.projects.title}
             </h2>
@@ -105,7 +105,7 @@ export default function ProjectsStorySection({
         </div>
         <div
           ref={trackRef}
-          className="relative z-10 h-full flex items-end gap-6 pl-8 pr-6 md:pr-12 pb-6"
+          className="project-track relative z-10 h-full flex items-end gap-6 pl-8 pr-6 md:pr-12 pb-[90px]"
         >
           {cards.map((card) => (
             <article

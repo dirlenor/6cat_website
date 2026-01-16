@@ -630,6 +630,7 @@ export const usePageAnimations = ({
       x: 0,
       duration: 2,
       ease: "power3.out",
+      force3D: true,
       stagger: { each: 0.28, from: "start" },
       scrollTrigger: {
         trigger: projectsSectionRef.current,
@@ -677,11 +678,13 @@ export const usePageAnimations = ({
         x: () => getStartX(),
         duration: getHoldDistance(),
         ease: "none",
+        force3D: true,
       })
       .to(projectsTrackRef.current, {
         x: () => getEndX(),
         duration: Math.abs(getEndX() - getStartX()),
         ease: "none",
+        force3D: true,
       });
 
     return () => {
