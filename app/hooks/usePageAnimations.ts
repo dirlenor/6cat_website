@@ -24,6 +24,7 @@ type UsePageAnimationsOptions = {
   projectsTitleRef: React.RefObject<HTMLHeadingElement>;
   projectsTrackRef: React.RefObject<HTMLDivElement>;
   projectsPinRef: React.RefObject<HTMLDivElement>;
+  projectsArrowTargetRef: React.RefObject<HTMLDivElement>;
 };
 
 export const usePageAnimations = ({
@@ -43,6 +44,7 @@ export const usePageAnimations = ({
   projectsTitleRef,
   projectsTrackRef,
   projectsPinRef,
+  projectsArrowTargetRef,
 }: UsePageAnimationsOptions) => {
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -351,21 +353,27 @@ export const usePageAnimations = ({
 
   useEffect(() => {
     const arrowEl = expertiseArrowWrapperRef.current;
-    const targetEl = servicesArrowTargetRef.current;
+    const servicesTarget = servicesArrowTargetRef.current;
     const servicesSection = statsSectionRef.current;
-    if (!arrowEl || !targetEl || !servicesSection) return;
+    if (
+      !arrowEl ||
+      !servicesTarget ||
+      !servicesSection
+    ) {
+      return;
+    }
 
-    const getDelta = () => {
+    const getDelta = (target: HTMLDivElement) => {
       const origin = arrowEl.getBoundingClientRect();
-      const target = targetEl.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
       return {
-        x: target.left - origin.left,
-        y: target.top - origin.top,
+        x: targetRect.left - origin.left,
+        y: targetRect.top - origin.top,
       };
     };
 
-    const moveToTarget = () => {
-      const delta = getDelta();
+    const moveToTarget = (target: HTMLDivElement) => {
+      const delta = getDelta(target);
       gsap.to(arrowEl, {
         x: delta.x,
         y: delta.y,
@@ -383,18 +391,22 @@ export const usePageAnimations = ({
       });
     };
 
-    const trigger = ScrollTrigger.create({
+    const servicesTrigger = ScrollTrigger.create({
       trigger: servicesSection,
       start: "top center",
-      onEnter: moveToTarget,
-      onEnterBack: moveToTarget,
+      onEnter: () => moveToTarget(servicesTarget),
+      onEnterBack: () => moveToTarget(servicesTarget),
       onLeaveBack: moveBack,
     });
 
     return () => {
-      trigger.kill();
+      servicesTrigger.kill();
     };
-  }, [expertiseArrowWrapperRef, servicesArrowTargetRef, statsSectionRef]);
+  }, [
+    expertiseArrowWrapperRef,
+    servicesArrowTargetRef,
+    statsSectionRef,
+  ]);
 
   useEffect(() => {
     if (!heroTitleRef.current) return;

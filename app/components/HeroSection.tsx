@@ -17,40 +17,13 @@ export default function HeroSection({
   scrollingTextRef,
   heroTitleRef,
 }: HeroSectionProps) {
+  const cornerText = t.hero.cornerLines.join(" ");
+
   return (
     <section
       ref={heroSectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
     >
-      <div className="absolute top-[calc(60px+4.25rem)] left-0 w-full px-6 md:px-12">
-        <div className="max-w-7xl mx-auto flex justify-end">
-          <div className="w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
-            {t.hero.cornerLines.map((line, index) => (
-              <p key={index}>
-                {line
-                  .split(/(Creative|experience|ideas|สร้างสรรค์|ประสบการณ์|ไอเดีย)/g)
-                  .map((part, partIndex) => {
-                  if (
-                    part === "Creative" ||
-                    part === "experience" ||
-                    part === "ideas" ||
-                    part === "สร้างสรรค์" ||
-                    part === "ประสบการณ์" ||
-                    part === "ไอเดีย"
-                  ) {
-                    return (
-                      <span key={partIndex} className="font-bold text-base md:text-lg text-primary">
-                        {part}
-                      </span>
-                    );
-                  }
-                  return <span key={partIndex}>{part}</span>;
-                })}
-              </p>
-            ))}
-          </div>
-        </div>
-      </div>
       <div className="absolute inset-0 flex items-center justify-center select-none overflow-hidden pointer-events-none z-10">
         <div className="w-full overflow-hidden">
           <div ref={scrollingTextRef} className="flex animate-scroll whitespace-nowrap">
@@ -71,7 +44,30 @@ export default function HeroSection({
         >
           {t.hero.title}
         </h2>
-        <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
+        <div className="mt-6 max-w-4xl lg:max-w-5xl mx-auto text-center text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
+          <p>
+            {cornerText
+              .split(/(Creative|experience|ideas|สร้างสรรค์|ประสบการณ์|ไอเดีย)/g)
+              .map((part, partIndex) => {
+                if (
+                  part === "Creative" ||
+                  part === "experience" ||
+                  part === "ideas" ||
+                  part === "สร้างสรรค์" ||
+                  part === "ประสบการณ์" ||
+                  part === "ไอเดีย"
+                ) {
+                  return (
+                    <span key={partIndex} className="font-bold text-base md:text-lg text-primary">
+                      {part}
+                    </span>
+                  );
+                }
+                return <span key={partIndex}>{part}</span>;
+              })}
+          </p>
+        </div>
+        <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
           <button className="w-full sm:w-auto px-8 py-3.5 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm md:text-base hover:scale-105 transition-transform group">
             {t.hero.exploreMore}
             <svg

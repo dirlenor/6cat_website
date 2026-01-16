@@ -29,6 +29,62 @@
   .dark-mode-grid {
     --grid-color: rgba(255, 255, 255, 0.05);
   }
+
+  .about-pulse-dot {
+    position: relative;
+  }
+
+  .about-pulse-dot::before,
+  .about-pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(195, 245, 60, 0.6);
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    animation: about-pulse 3s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .about-pulse-dot::after {
+    animation-delay: 1.5s;
+  }
+
+  @keyframes about-pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0.8;
+    }
+    70% {
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(4);
+      opacity: 0;
+    }
+  }
+
+  .timeline-pulse-dot::before,
+  .timeline-pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(195, 245, 60, 0.6);
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    animation: about-pulse 3s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .timeline-pulse-dot::after {
+    animation-delay: 1.5s;
+  }
   
   ::-webkit-scrollbar {
     width: 0px;

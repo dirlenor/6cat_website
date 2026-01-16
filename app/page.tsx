@@ -3,11 +3,12 @@
 import { useEffect, useState, useRef } from "react";
 import { getTranslations, type Language } from "./lib/i18n";
 import SiteHeader from "./components/SiteHeader";
-import SocialRail from "./components/SocialRail";
 import HeroSection from "./components/HeroSection";
+import AboutSection from "./components/AboutSection";
 import ExpertiseSection from "./components/ExpertiseSection";
 import ServicesSection from "./components/ServicesSection";
 import ProjectsStorySection from "./components/ProjectsStorySection";
+import TimelineSection from "./components/TimelineSection";
 import { usePageAnimations } from "./hooks/usePageAnimations";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
   const projectsTitleRef = useRef<HTMLHeadingElement>(null);
   const projectsTrackRef = useRef<HTMLDivElement>(null);
   const projectsPinRef = useRef<HTMLDivElement>(null);
+  const projectsArrowTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check current theme and language on mount
@@ -60,6 +62,7 @@ export default function Home() {
     projectsTitleRef,
     projectsTrackRef,
     projectsPinRef,
+    projectsArrowTargetRef,
   });
 
   const toggleDarkMode = () => {
@@ -139,8 +142,6 @@ export default function Home() {
         toggleDarkMode={toggleDarkMode}
       />
 
-      <SocialRail t={t} />
-
       <main className="flex-grow flex flex-col relative w-full pt-20">
         <HeroSection
           t={t}
@@ -148,6 +149,8 @@ export default function Home() {
           scrollingTextRef={scrollingTextRef}
           heroTitleRef={heroTitleRef}
         />
+
+        <AboutSection t={t} />
 
         <ExpertiseSection
           t={t}
@@ -173,7 +176,10 @@ export default function Home() {
           titleRef={projectsTitleRef}
           trackRef={projectsTrackRef}
           pinRef={projectsPinRef}
+          arrowTargetRef={projectsArrowTargetRef}
         />
+
+        <TimelineSection t={t} />
 
       </main>
     </div>

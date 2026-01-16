@@ -10,6 +10,7 @@ type ProjectsStorySectionProps = {
   titleRef: React.RefObject<HTMLHeadingElement>;
   trackRef: React.RefObject<HTMLDivElement>;
   pinRef: React.RefObject<HTMLDivElement>;
+  arrowTargetRef: React.RefObject<HTMLDivElement>;
 };
 
 export default function ProjectsStorySection({
@@ -18,6 +19,7 @@ export default function ProjectsStorySection({
   titleRef,
   trackRef,
   pinRef,
+  arrowTargetRef,
 }: ProjectsStorySectionProps) {
   const cards = [
     {
@@ -69,12 +71,18 @@ export default function ProjectsStorySection({
         <div className="absolute inset-0 pointer-events-none z-20">
           <div className="absolute left-0 right-0 top-[calc(60px+2.5rem+40px)] px-6 md:px-12">
             <div className="projects-header-inner max-w-7xl mx-auto flex items-center gap-6">
-              <h2
-                ref={titleRef}
-                className="text-black dark:text-white font-display text-4xl md:text-6xl font-bold flex-1 min-w-0 leading-[0.9] whitespace-nowrap"
-              >
-                {t.projects.title}
-              </h2>
+              <div className="flex items-center gap-3 min-w-0">
+                <h2
+                  ref={titleRef}
+                  className="text-black dark:text-white font-display text-4xl md:text-6xl font-bold min-w-0 leading-[0.9] whitespace-nowrap"
+                >
+                  {t.projects.title}
+                </h2>
+                <div
+                  ref={arrowTargetRef}
+                  className="w-10 h-10 opacity-0 pointer-events-none flex-shrink-0"
+                ></div>
+              </div>
               <div className="hidden md:flex items-center gap-6 ml-auto">
                 <div className="h-px w-40 bg-black/30 dark:bg-white/30"></div>
                 <div className="flex flex-col text-black/70 dark:text-white/70 text-sm leading-relaxed text-right items-end">
