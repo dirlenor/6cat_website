@@ -26,51 +26,37 @@ export default function ProjectsStorySection({
   const cards = [
     {
       title: "Atlas Studio",
-      description: "Brand system and web platform for a design studio.",
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=800&fit=crop&q=80",
+      description: "Brand system, identity, and web platform.",
       href: "#",
     },
     {
       title: "Lumen Health",
-      description: "Product experience and launch for a health startup.",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80",
+      description: "Product UX and launch for a health startup.",
       href: "#",
     },
     {
       title: "Northwave",
-      description: "E-commerce redesign with performance optimization.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&q=80",
+      description: "E-commerce redesign focused on conversion.",
       href: "#",
     },
     {
       title: "Signal Labs",
-      description: "SaaS marketing site with interactive storytelling.",
-      image:
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop&q=80",
+      description: "SaaS marketing site and story system.",
       href: "#",
     },
     {
       title: "Monarch",
       description: "Luxury brand identity and campaign rollout.",
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop&q=80",
       href: "#",
     },
     {
       title: "Aurora",
-      description: "Mobile app design and growth strategy.",
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=800&fit=crop&q=80",
+      description: "Mobile app design with growth strategy.",
       href: "#",
     },
     {
       title: "Vantage",
-      description: "Enterprise website and content system.",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&q=80",
+      description: "Enterprise website and content framework.",
       href: "#",
     },
   ];
@@ -110,13 +96,8 @@ export default function ProjectsStorySection({
           {cards.map((card) => (
             <article
               key={card.title}
-              className="project-card relative flex-shrink-0 h-[70vh] w-[80vw] md:w-[46vw] rounded-3xl overflow-hidden border border-white/10 bg-black/20"
+              className="project-card relative flex-shrink-0 h-[70vh] w-[80vw] md:w-[46vw] rounded-3xl overflow-hidden border border-white/10 bg-neutral-900/80"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('${card.image}')` }}
-              ></div>
-              <div className="absolute inset-0 bg-black/60"></div>
               <div className="relative h-full p-8 flex flex-col justify-between text-white">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-display font-bold">
