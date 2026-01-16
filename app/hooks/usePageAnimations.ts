@@ -139,9 +139,10 @@ export const usePageAnimations = ({
   }, [progressBarRef, statsSectionRef, typingTextRef]);
 
   useEffect(() => {
-    if (!expertiseSectionRef.current || expertiseCardsRef.current.length === 0) return;
+    const cards = expertiseCardsRef.current ?? [];
+    if (!expertiseSectionRef.current || cards.length === 0) return;
 
-    expertiseCardsRef.current.forEach((card) => {
+    cards.forEach((card) => {
       if (card) {
         gsap.set(card, {
           opacity: 0,
@@ -154,7 +155,7 @@ export const usePageAnimations = ({
       trigger: expertiseSectionRef.current,
       start: "top 80%",
       onEnter: () => {
-        gsap.to(expertiseCardsRef.current, {
+        gsap.to(cards, {
           opacity: 1,
           y: 0,
           duration: 1.5,
