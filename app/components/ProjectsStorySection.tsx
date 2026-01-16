@@ -62,7 +62,7 @@ export default function ProjectsStorySection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-[400vh] w-full bg-background-light dark:bg-background-dark"
+      className="relative h-[320vh] md:h-[360vh] lg:h-[400vh] w-full bg-background-light dark:bg-background-dark"
     >
       <div
         ref={pinRef}
