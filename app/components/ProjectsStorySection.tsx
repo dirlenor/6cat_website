@@ -62,13 +62,13 @@ export default function ProjectsStorySection({
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full pt-12 pb-24 bg-background-light dark:bg-background-dark"
+      className="relative min-h-screen w-full px-6 md:px-12 pt-12 pb-24 bg-background-light dark:bg-background-dark"
     >
       <div
         ref={pinRef}
         className="relative h-screen w-full overflow-hidden bg-background-light dark:bg-background-dark"
       >
-        <div className="projects-header-inner max-w-7xl mx-auto px-6 md:px-12 pt-10 md:pt-12 flex items-center gap-6 relative z-20">
+        <div className="projects-header-inner max-w-7xl mx-auto pt-10 md:pt-12 flex items-center gap-6 relative z-20">
           <div className="flex items-center gap-3 min-w-0">
             <h2
               ref={titleRef}
@@ -91,7 +91,7 @@ export default function ProjectsStorySection({
         </div>
         <div
           ref={trackRef}
-          className="project-track relative z-10 h-full flex items-start gap-6 pl-12 pr-6 md:pr-12 pt-10 md:pt-12 pb-10"
+          className="project-track relative z-10 h-full flex items-start gap-6 pt-10 md:pt-12 pb-10 max-w-7xl mx-auto"
         >
           {cards.map((card, index) => (
             <article
