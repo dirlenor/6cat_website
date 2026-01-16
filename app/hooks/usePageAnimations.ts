@@ -693,7 +693,9 @@ export const usePageAnimations = ({
       titleRevealTween.kill();
       horizontalTimeline.scrollTrigger?.kill();
       horizontalTimeline.kill();
-      projectsBgRef.current.style.opacity = "0";
+      if (projectsBgRef.current) {
+        projectsBgRef.current.style.opacity = "0";
+      }
     };
   }, [
     statsGridRef,
