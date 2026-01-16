@@ -8,6 +8,7 @@ type TranslationValues = Translations[Language];
 type ServicesSectionProps = {
   t: TranslationValues;
   statsSectionRef: React.RefObject<HTMLElement>;
+  statsGridRef: React.RefObject<HTMLDivElement>;
   typingTextRef: React.RefObject<HTMLParagraphElement>;
   progressBarRef: React.RefObject<HTMLDivElement>;
   projectCountRef: React.RefObject<HTMLDivElement>;
@@ -16,6 +17,7 @@ type ServicesSectionProps = {
 export default function ServicesSection({
   t,
   statsSectionRef,
+  statsGridRef,
   typingTextRef,
   progressBarRef,
   projectCountRef,
@@ -164,43 +166,49 @@ export default function ServicesSection({
           </div>
         </div>
 
-        <div className="text-center mb-16">
-          <h3 className="text-2xl md:text-3xl font-display font-medium text-black dark:text-white">
-            {t.services.factsTitle}
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
+        <div ref={statsGridRef} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
             <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
               12,000+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
               {t.services.hoursWorked}
             </div>
+            <div className="mt-5 h-[2px] w-full bg-gray-200 dark:bg-neutral-800 overflow-hidden rounded-full">
+              <div className="h-full w-1/3 bg-primary transition-all duration-300 group-hover:w-2/3"></div>
+            </div>
           </div>
-          <div className="text-center">
+          <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
             <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
               89%
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
               {t.services.clientSatisfaction}
             </div>
+            <div className="mt-5 h-[2px] w-full bg-gray-200 dark:bg-neutral-800 overflow-hidden rounded-full">
+              <div className="h-full w-1/3 bg-primary transition-all duration-300 group-hover:w-2/3"></div>
+            </div>
           </div>
-          <div className="text-center">
+          <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
             <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
               1,200+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
               {t.services.activeClients}
             </div>
+            <div className="mt-5 h-[2px] w-full bg-gray-200 dark:bg-neutral-800 overflow-hidden rounded-full">
+              <div className="h-full w-1/3 bg-primary transition-all duration-300 group-hover:w-2/3"></div>
+            </div>
           </div>
-          <div className="text-center">
+          <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
             <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
               125+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
               {t.services.annualProjects}
+            </div>
+            <div className="mt-5 h-[2px] w-full bg-gray-200 dark:bg-neutral-800 overflow-hidden rounded-full">
+              <div className="h-full w-1/3 bg-primary transition-all duration-300 group-hover:w-2/3"></div>
             </div>
           </div>
         </div>

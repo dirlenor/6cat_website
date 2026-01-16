@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 type UsePageAnimationsOptions = {
   heroTitleText: string;
   statsSectionRef: React.RefObject<HTMLElement>;
+  statsGridRef: React.RefObject<HTMLDivElement>;
   typingTextRef: React.RefObject<HTMLParagraphElement>;
   progressBarRef: React.RefObject<HTMLDivElement>;
   expertiseSectionRef: React.RefObject<HTMLElement>;
@@ -22,11 +23,15 @@ type UsePageAnimationsOptions = {
   projectsProgressTextRef: React.RefObject<HTMLSpanElement>;
   projectsProgressFillRef: React.RefObject<HTMLDivElement>;
   projectsBgRef: React.RefObject<HTMLDivElement>;
+  projectsTitleRef: React.RefObject<HTMLHeadingElement>;
+  projectsTrackRef: React.RefObject<HTMLDivElement>;
+  projectsPinRef: React.RefObject<HTMLDivElement>;
 };
 
 export const usePageAnimations = ({
   heroTitleText,
   statsSectionRef,
+  statsGridRef,
   typingTextRef,
   progressBarRef,
   expertiseSectionRef,
@@ -39,6 +44,9 @@ export const usePageAnimations = ({
   projectsProgressTextRef,
   projectsProgressFillRef,
   projectsBgRef,
+  projectsTitleRef,
+  projectsTrackRef,
+  projectsPinRef,
 }: UsePageAnimationsOptions) => {
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -541,16 +549,24 @@ export const usePageAnimations = ({
   }, [heroSectionRef, heroTitleRef]);
 
   useEffect(() => {
-    if (!projectsSectionRef.current || !projectsBgRef.current) return;
+    if (
+      !projectsSectionRef.current ||
+      !projectsBgRef.current ||
+      !statsGridRef.current ||
+      !projectsTitleRef.current ||
+      !projectsTrackRef.current ||
+      !projectsPinRef.current
+    )
+      return;
 
     const transitionTween = gsap.to(projectsBgRef.current, {
       opacity: 1,
       ease: "none",
       scrollTrigger: {
-        trigger: projectsSectionRef.current,
+        trigger: statsGridRef.current,
         start: "top top",
-        end: "top+=50vh top",
-        scrub: 1.2,
+        end: "top+=80vh top",
+        scrub: 1.8,
       },
     });
 
@@ -560,8 +576,8 @@ export const usePageAnimations = ({
       scrollTrigger: {
         trigger: projectsSectionRef.current,
         start: "bottom top",
-        end: "bottom+=50vh top",
-        scrub: 1.2,
+        end: "bottom+=80vh top",
+        scrub: 1.8,
       },
     });
 
@@ -580,18 +596,113 @@ export const usePageAnimations = ({
       },
     });
 
+    const projectCards = Array.from(
+      projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card")
+    );
+    gsap.set(projectCards, { opacity: 0, y: 40, x: -60 });
+    const cardsRevealTween = gsap.to(projectCards, {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      duration: 2,
+      ease: "power3.out",
+      stagger: { each: 0.28, from: "start" },
+      scrollTrigger: {
+        trigger: projectsSectionRef.current,
+        start: "top+=5% top",
+        end: "top+=20% top",
+        scrub: 1,
+      },
+    });
+
+    const titleRevealTween = gsap.fromTo(
+      projectsTitleRef.current,
+      { opacity: 0, x: -80 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1.6,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: statsGridRef.current,
+          start: "bottom top",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    const getStartX = () => {
+      const firstCard =
+        projectsTrackRef.current?.querySelector<HTMLElement>(".project-card");
+      if (!firstCard || !projectsPinRef.current) return 0;
+      const leftOffset = firstCard.offsetLeft;
+      return -leftOffset;
+    };
+
+    const getEndX = () => {
+      if (!projectsTrackRef.current || !projectsPinRef.current) return 0;
+      const cards =
+        projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card");
+      const lastCard = cards[cards.length - 1];
+      if (!lastCard) return 0;
+      const pinWidth = projectsPinRef.current.clientWidth;
+      const lastRight = lastCard.offsetLeft + lastCard.clientWidth;
+      return pinWidth - lastRight;
+    };
+
+    const getHoldDistance = () => Math.max(0, window.innerHeight * 0.5);
+
+    gsap.set(projectsTrackRef.current, { x: getStartX() });
+
+    const horizontalTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: projectsSectionRef.current,
+        start: "top top",
+        end: () => `+=${getHoldDistance() + Math.abs(getEndX() - getStartX())}`,
+        scrub: 1,
+        pin: projectsPinRef.current,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => {
+          gsap.set(projectsTrackRef.current, { x: getStartX() });
+        },
+      },
+    });
+
+    horizontalTimeline
+      .to(projectsTrackRef.current, {
+        x: () => getStartX(),
+        duration: getHoldDistance(),
+        ease: "none",
+      })
+      .to(projectsTrackRef.current, {
+        x: () => getEndX(),
+        duration: Math.abs(getEndX() - getStartX()),
+        ease: "none",
+      });
+
     return () => {
       transitionTween.scrollTrigger?.kill();
       transitionTween.kill();
       resetTween.scrollTrigger?.kill();
       resetTween.kill();
       progressTrigger.kill();
+      cardsRevealTween.scrollTrigger?.kill();
+      cardsRevealTween.kill();
+      titleRevealTween.scrollTrigger?.kill();
+      titleRevealTween.kill();
+      horizontalTimeline.scrollTrigger?.kill();
+      horizontalTimeline.kill();
       projectsBgRef.current.style.opacity = "0";
     };
   }, [
+    statsGridRef,
     projectsProgressFillRef,
     projectsProgressTextRef,
     projectsSectionRef,
     projectsBgRef,
+    projectsTitleRef,
+    projectsTrackRef,
+    projectsPinRef,
   ]);
 };

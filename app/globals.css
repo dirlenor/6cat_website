@@ -47,6 +47,7 @@
     opacity: 1;
   }
 
+
   /* Apply Anuphan font when Thai language is selected - with higher specificity */
   html.font-thai *,
   body.font-anuphan,

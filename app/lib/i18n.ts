@@ -68,6 +68,10 @@ export const translations = {
         "Prototype fast, then sharpen the narrative.",
         "Ship a system that scales with the brand.",
       ],
+      sideLines: [
+        "Selected work and case studies",
+        "Crafted with clarity and intent",
+      ],
     },
     social: {
       facebook: "Facebook",
@@ -134,12 +138,16 @@ export const translations = {
     servicesDescription:
       "โซลูชันดิจิทัลล้ำสมัยด้วยโครงสร้างพื้นฐานระดับองค์กรและเวิร์กโฟลว์ที่ราบรื่น — ส่งมอบผลลัพธ์ที่ยอดเยี่ยม บนทุกแพลตฟอร์ม",
     projects: {
-      title: "เรื่องราวของโปรเจค",
+      title: "โปรเจค",
       subtitle: "เปลี่ยนไอเดียให้เป็นผลลัพธ์ที่จับต้องได้",
       steps: [
         "ค้นหาปัญหาจริง ไม่ใช่แค่บรีฟ",
         "ทำต้นแบบเร็ว แล้วขัดเกลานำเสนอ",
         "ส่งมอบระบบที่ขยายตามแบรนด์ได้",
+      ],
+      sideLines: [
+        "ผลงานที่คัดสรรและกรณีศึกษา",
+        "สร้างสรรค์ด้วยความชัดเจนและความตั้งใจ",
       ],
     },
     social: {

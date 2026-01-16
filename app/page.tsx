@@ -15,6 +15,7 @@ export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const t = getTranslations(language);
   const statsSectionRef = useRef<HTMLElement>(null);
+  const statsGridRef = useRef<HTMLDivElement>(null);
   const typingTextRef = useRef<HTMLParagraphElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const expertiseSectionRef = useRef<HTMLElement>(null);
@@ -27,6 +28,9 @@ export default function Home() {
   const projectsProgressTextRef = useRef<HTMLSpanElement>(null);
   const projectsProgressFillRef = useRef<HTMLDivElement>(null);
   const projectsBgRef = useRef<HTMLDivElement>(null);
+  const projectsTitleRef = useRef<HTMLHeadingElement>(null);
+  const projectsTrackRef = useRef<HTMLDivElement>(null);
+  const projectsPinRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check current theme and language on mount
@@ -42,6 +46,7 @@ export default function Home() {
   usePageAnimations({
     heroTitleText: t.hero.title,
     statsSectionRef,
+    statsGridRef,
     typingTextRef,
     progressBarRef,
     expertiseSectionRef,
@@ -54,6 +59,9 @@ export default function Home() {
     projectsProgressTextRef,
     projectsProgressFillRef,
     projectsBgRef,
+    projectsTitleRef,
+    projectsTrackRef,
+    projectsPinRef,
   });
 
   const toggleDarkMode = () => {
@@ -153,15 +161,20 @@ export default function Home() {
         <ServicesSection
           t={t}
           statsSectionRef={statsSectionRef}
+          statsGridRef={statsGridRef}
           typingTextRef={typingTextRef}
           progressBarRef={progressBarRef}
           projectCountRef={projectCountRef}
         />
 
         <ProjectsStorySection
+          t={t}
           sectionRef={projectsSectionRef}
           progressTextRef={projectsProgressTextRef}
           progressFillRef={projectsProgressFillRef}
+          titleRef={projectsTitleRef}
+          trackRef={projectsTrackRef}
+          pinRef={projectsPinRef}
         />
       </main>
     </div>

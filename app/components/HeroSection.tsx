@@ -22,7 +22,7 @@ export default function HeroSection({
       ref={heroSectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
     >
-      <div className="absolute top-[calc(60px+3.25rem)] right-8 w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
+      <div className="absolute top-[calc(60px+4.25rem)] right-8 w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
         {t.hero.cornerLines.map((line, index) => (
           <p key={index}>
             {line
