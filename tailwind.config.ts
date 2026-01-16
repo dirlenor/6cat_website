@@ -12,7 +12,7 @@ const config: Config = {
       colors: {
         primary: "#C3F53C", // Neon Green
         "background-light": "#FFFFFF",
-        "background-dark": "#0a0a0a",
+        "background-dark": "#000000",
         "text-light": "#111111",
         "text-dark": "#f3f4f6",
         "subtle-light": "#e5e7eb", // grid lines

@@ -22,22 +22,30 @@ export default function HeroSection({
       ref={heroSectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
     >
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-        <div className="w-[60vh] h-[60vh] border-[1px] border-black/10 dark:border-white/10 rounded-full flex items-center justify-center animate-spin-slow">
-          <div className="w-[90%] h-[90%] border-[1px] border-dashed border-black/10 dark:border-white/10 rounded-full"></div>
-          <div
-            className="absolute inset-0 w-full h-full rounded-full opacity-10 dark:opacity-5"
-            style={{
-              background:
-                "repeating-conic-gradient(from 0deg, transparent 0deg 4deg, currentColor 4deg 5deg)",
-            }}
-          ></div>
-        </div>
-        <div className="absolute top-[20%] right-[20%] w-8 h-8 rounded-full bg-primary animate-float blur-sm"></div>
-        <div
-          className="absolute bottom-[30%] left-[25%] w-4 h-4 rounded-full bg-black dark:bg-white animate-float"
-          style={{ animationDelay: "1s" }}
-        ></div>
+      <div className="absolute top-[calc(60px+3.25rem)] right-8 w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
+        {t.hero.cornerLines.map((line, index) => (
+          <p key={index}>
+            {line
+              .split(/(Creative|experience|ideas|สร้างสรรค์|ประสบการณ์|ไอเดีย)/g)
+              .map((part, partIndex) => {
+              if (
+                part === "Creative" ||
+                part === "experience" ||
+                part === "ideas" ||
+                part === "สร้างสรรค์" ||
+                part === "ประสบการณ์" ||
+                part === "ไอเดีย"
+              ) {
+                return (
+                  <span key={partIndex} className="font-bold text-base md:text-lg text-primary">
+                    {part}
+                  </span>
+                );
+              }
+              return <span key={partIndex}>{part}</span>;
+            })}
+          </p>
+        ))}
       </div>
       <div className="absolute inset-0 flex items-center justify-center select-none overflow-hidden pointer-events-none z-10">
         <div className="w-full overflow-hidden">

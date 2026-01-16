@@ -21,6 +21,7 @@ type UsePageAnimationsOptions = {
   projectsSectionRef: React.RefObject<HTMLElement>;
   projectsProgressTextRef: React.RefObject<HTMLSpanElement>;
   projectsProgressFillRef: React.RefObject<HTMLDivElement>;
+  projectsBgRef: React.RefObject<HTMLDivElement>;
 };
 
 export const usePageAnimations = ({
@@ -37,6 +38,7 @@ export const usePageAnimations = ({
   projectsSectionRef,
   projectsProgressTextRef,
   projectsProgressFillRef,
+  projectsBgRef,
 }: UsePageAnimationsOptions) => {
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -539,13 +541,10 @@ export const usePageAnimations = ({
   }, [heroSectionRef, heroTitleRef]);
 
   useEffect(() => {
-    if (!projectsSectionRef.current) return;
+    if (!projectsSectionRef.current || !projectsBgRef.current) return;
 
-    const targets = [document.documentElement, document.body];
-    const originalBackground = document.body.style.backgroundColor;
-
-    const transitionTween = gsap.to(targets, {
-      backgroundColor: "#000000",
+    const transitionTween = gsap.to(projectsBgRef.current, {
+      opacity: 1,
       ease: "none",
       scrollTrigger: {
         trigger: projectsSectionRef.current,
@@ -555,8 +554,8 @@ export const usePageAnimations = ({
       },
     });
 
-    const resetTween = gsap.to(targets, {
-      backgroundColor: originalBackground || "",
+    const resetTween = gsap.to(projectsBgRef.current, {
+      opacity: 0,
       ease: "none",
       scrollTrigger: {
         trigger: projectsSectionRef.current,
@@ -587,13 +586,12 @@ export const usePageAnimations = ({
       resetTween.scrollTrigger?.kill();
       resetTween.kill();
       progressTrigger.kill();
-      targets.forEach((target) => {
-        target.style.backgroundColor = originalBackground || "";
-      });
+      projectsBgRef.current.style.opacity = "0";
     };
   }, [
     projectsProgressFillRef,
     projectsProgressTextRef,
     projectsSectionRef,
+    projectsBgRef,
   ]);
 };

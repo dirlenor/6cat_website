@@ -26,6 +26,7 @@ export default function Home() {
   const projectsSectionRef = useRef<HTMLElement>(null);
   const projectsProgressTextRef = useRef<HTMLSpanElement>(null);
   const projectsProgressFillRef = useRef<HTMLDivElement>(null);
+  const projectsBgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check current theme and language on mount
@@ -52,6 +53,7 @@ export default function Home() {
     projectsSectionRef,
     projectsProgressTextRef,
     projectsProgressFillRef,
+    projectsBgRef,
   });
 
   const toggleDarkMode = () => {
@@ -83,7 +85,8 @@ export default function Home() {
       document.documentElement.setAttribute("lang", "en");
       document.documentElement.classList.remove("font-thai");
       document.body.classList.remove("font-anuphan");
-      document.body.style.fontFamily = "";
+      document.body.style.fontFamily =
+        "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
       document.body.style.fontFeatureSettings = "";
       document.body.style.removeProperty("-webkit-font-smoothing");
       document.body.style.removeProperty("-moz-osx-font-smoothing");
@@ -104,7 +107,8 @@ export default function Home() {
       document.documentElement.setAttribute("lang", "en");
       document.documentElement.classList.remove("font-thai");
       document.body.classList.remove("font-anuphan");
-      document.body.style.fontFamily = "";
+      document.body.style.fontFamily =
+        "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
       document.body.style.fontFeatureSettings = "";
       document.body.style.removeProperty("-webkit-font-smoothing");
       document.body.style.removeProperty("-moz-osx-font-smoothing");
@@ -119,7 +123,8 @@ export default function Home() {
 
   return (
     <div className={language === "th" ? "font-anuphan" : ""}>
-      <div className="fixed inset-0 pointer-events-none z-0 light-mode-grid dark:dark-mode-grid grid-background w-full h-full"></div>
+      <div ref={projectsBgRef} className="fixed inset-0 pointer-events-none z-0 bg-black opacity-0"></div>
+      <div className="fixed inset-0 pointer-events-none z-[1] light-mode-grid dark:dark-mode-grid grid-background w-full h-full"></div>
 
       <SiteHeader
         language={language}

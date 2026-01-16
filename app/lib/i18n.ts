@@ -13,6 +13,11 @@ export const translations = {
       title: "6CAT Agency Creative Design.",
       exploreMore: "Explore More",
       getQuote: "Get Quote",
+      cornerLines: [
+        "Creative digital agency built for modern brands.",
+        "We craft identity, experience, and product as one.",
+        "Strategy-led work that turns ideas into growth.",
+      ],
     },
     heroBottom: {
       tagline1: "Full Service Web Design Agency",
@@ -81,6 +86,11 @@ export const translations = {
       title: "6CAT Agency Creative Design.",
       exploreMore: "สำรวจเพิ่มเติม",
       getQuote: "ขอใบเสนอราคา",
+      cornerLines: [
+        "เอเจนซี่ดิจิทัลสร้างสรรค์สำหรับแบรนด์ยุคใหม่",
+        "ผสานอัตลักษณ์ ประสบการณ์ และโปรดักต์เข้าด้วยกัน",
+        "งานขับเคลื่อนด้วยกลยุทธ์ เปลี่ยนไอเดียเป็นการเติบโต",
+      ],
     },
     heroBottom: {
       tagline1: "เอเจนซี่ออกแบบเว็บไซต์แบบครบวงจร",
