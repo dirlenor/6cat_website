@@ -12,6 +12,7 @@ type ServicesSectionProps = {
   typingTextRef: React.RefObject<HTMLParagraphElement>;
   progressBarRef: React.RefObject<HTMLDivElement>;
   projectCountRef: React.RefObject<HTMLDivElement>;
+  arrowTargetRef: React.RefObject<HTMLDivElement>;
 };
 
 export default function ServicesSection({
@@ -21,6 +22,7 @@ export default function ServicesSection({
   typingTextRef,
   progressBarRef,
   projectCountRef,
+  arrowTargetRef,
 }: ServicesSectionProps) {
   return (
     <section
@@ -29,9 +31,15 @@ export default function ServicesSection({
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
-            {t.services.title}
-          </h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
+              {t.services.title}
+            </h2>
+            <div
+              ref={arrowTargetRef}
+              className="ml-auto w-10 h-10 opacity-0 pointer-events-none"
+            ></div>
+          </div>
           <div className="w-full h-[1px] bg-gray-200 dark:bg-neutral-800 mt-6"></div>
         </div>
 

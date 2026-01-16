@@ -124,7 +124,21 @@ export default function ProjectsStorySection({
                 </div>
                 <div className="flex-1 overflow-hidden rounded-2xl border border-white/10 bg-white/5 mx-8 mb-8">
                   <img
-                    src="https://i.pinimg.com/1200x/a8/65/c9/a865c917a682c6dbbc14afa5dbc6bcfa.jpg"
+                    src={
+                      index === 0
+                        ? "https://i.pinimg.com/1200x/a8/65/c9/a865c917a682c6dbbc14afa5dbc6bcfa.jpg"
+                        : index === 1
+                          ? "https://i.pinimg.com/1200x/bd/65/c6/bd65c676f888fd6f11552767236c8131.jpg"
+                          : index === 2
+                            ? "https://i.pinimg.com/736x/c9/6f/7b/c96f7ba6b15d3012bcf5315b034626cf.jpg"
+                            : index === 3
+                              ? "https://i.pinimg.com/736x/50/e0/bb/50e0bb0b642b189a3118bf4b994159e1.jpg"
+                              : index === 4
+                                ? "https://i.pinimg.com/736x/05/ef/9c/05ef9cf3b8700ff2cf48861256ab4ae5.jpg"
+                                : index === 5
+                                  ? "https://i.pinimg.com/736x/aa/57/87/aa5787719b9fb917f468c45fc5f8bea9.jpg"
+                                  : "https://i.pinimg.com/1200x/3a/e8/09/3ae809dc5a07a3b5c6cbbe9d9124eeba.jpg"
+                    }
                     alt="Project preview"
                     className="h-full w-full object-cover object-bottom"
                   />

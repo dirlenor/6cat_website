@@ -14,6 +14,8 @@ type UsePageAnimationsOptions = {
   progressBarRef: React.RefObject<HTMLDivElement>;
   expertiseSectionRef: React.RefObject<HTMLElement>;
   expertiseCardsRef: React.RefObject<HTMLDivElement[]>;
+  expertiseArrowWrapperRef: React.RefObject<HTMLDivElement>;
+  servicesArrowTargetRef: React.RefObject<HTMLDivElement>;
   projectCountRef: React.RefObject<HTMLDivElement>;
   heroTitleRef: React.RefObject<HTMLHeadingElement>;
   scrollingTextRef: React.RefObject<HTMLDivElement>;
@@ -31,6 +33,8 @@ export const usePageAnimations = ({
   progressBarRef,
   expertiseSectionRef,
   expertiseCardsRef,
+  expertiseArrowWrapperRef,
+  servicesArrowTargetRef,
   projectCountRef,
   heroTitleRef,
   scrollingTextRef,
@@ -344,6 +348,53 @@ export const usePageAnimations = ({
       });
     };
   }, [projectCountRef, statsSectionRef]);
+
+  useEffect(() => {
+    const arrowEl = expertiseArrowWrapperRef.current;
+    const targetEl = servicesArrowTargetRef.current;
+    const servicesSection = statsSectionRef.current;
+    if (!arrowEl || !targetEl || !servicesSection) return;
+
+    const getDelta = () => {
+      const origin = arrowEl.getBoundingClientRect();
+      const target = targetEl.getBoundingClientRect();
+      return {
+        x: target.left - origin.left,
+        y: target.top - origin.top,
+      };
+    };
+
+    const moveToTarget = () => {
+      const delta = getDelta();
+      gsap.to(arrowEl, {
+        x: delta.x,
+        y: delta.y,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    };
+
+    const moveBack = () => {
+      gsap.to(arrowEl, {
+        x: 0,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    };
+
+    const trigger = ScrollTrigger.create({
+      trigger: servicesSection,
+      start: "top center",
+      onEnter: moveToTarget,
+      onEnterBack: moveToTarget,
+      onLeaveBack: moveBack,
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, [expertiseArrowWrapperRef, servicesArrowTargetRef, statsSectionRef]);
 
   useEffect(() => {
     if (!heroTitleRef.current) return;

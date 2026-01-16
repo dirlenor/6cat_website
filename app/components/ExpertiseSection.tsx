@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { Language, Translations } from "../lib/i18n";
 
 type TranslationValues = Translations[Language];
@@ -8,23 +9,80 @@ type ExpertiseSectionProps = {
   t: TranslationValues;
   expertiseSectionRef: React.RefObject<HTMLElement>;
   setExpertiseCardRef: (index: number, el: HTMLDivElement | null) => void;
+  arrowWrapperRef: React.RefObject<HTMLDivElement>;
+  arrowRef: React.RefObject<SVGSVGElement>;
 };
 
 export default function ExpertiseSection({
   t,
   expertiseSectionRef,
   setExpertiseCardRef,
+  arrowWrapperRef,
+  arrowRef,
 }: ExpertiseSectionProps) {
+  useEffect(() => {
+    const arrowEl = arrowRef.current;
+    const wrapperEl = arrowWrapperRef.current;
+    if (!arrowEl || !wrapperEl) return;
+
+    let rafId: number | null = null;
+    let currentAngle = 0;
+    let targetAngle = 0;
+
+    const animate = () => {
+      const delta = ((targetAngle - currentAngle + 540) % 360) - 180;
+      currentAngle += delta * 0.12;
+      arrowEl.style.transform = `rotate(${currentAngle}deg)`;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = wrapperEl.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = event.clientX - centerX;
+      const deltaY = event.clientY - centerY;
+      targetAngle = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
+    };
+
+    rafId = requestAnimationFrame(animate);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <section
       ref={expertiseSectionRef}
-      className="relative z-10 w-full px-6 md:px-12 py-24 md:py-32"
+      className="relative z-20 w-full px-6 md:px-12 py-24 md:py-32"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
-            {t.expertise.title}
-          </h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
+              {t.expertise.title}
+            </h2>
+            <div
+              ref={arrowWrapperRef}
+              className="ml-auto w-10 h-10 rounded-xl bg-primary flex items-center justify-center relative z-40"
+            >
+              <svg
+                ref={arrowRef}
+                className="w-5 h-5 text-black"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
           <div className="w-full h-[1px] bg-gray-200 dark:bg-neutral-800 mt-6"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">

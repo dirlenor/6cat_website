@@ -20,6 +20,9 @@ export default function Home() {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const expertiseSectionRef = useRef<HTMLElement>(null);
   const expertiseCardsRef = useRef<HTMLDivElement[]>([]);
+  const expertiseArrowWrapperRef = useRef<HTMLDivElement>(null);
+  const expertiseArrowRef = useRef<SVGSVGElement>(null);
+  const servicesArrowTargetRef = useRef<HTMLDivElement>(null);
   const projectCountRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const scrollingTextRef = useRef<HTMLDivElement>(null);
@@ -47,6 +50,8 @@ export default function Home() {
     progressBarRef,
     expertiseSectionRef,
     expertiseCardsRef,
+    expertiseArrowWrapperRef,
+    servicesArrowTargetRef,
     projectCountRef,
     heroTitleRef,
     scrollingTextRef,
@@ -148,6 +153,8 @@ export default function Home() {
           t={t}
           expertiseSectionRef={expertiseSectionRef}
           setExpertiseCardRef={setExpertiseCardRef}
+          arrowWrapperRef={expertiseArrowWrapperRef}
+          arrowRef={expertiseArrowRef}
         />
 
         <ServicesSection
@@ -157,6 +164,7 @@ export default function Home() {
           typingTextRef={typingTextRef}
           progressBarRef={progressBarRef}
           projectCountRef={projectCountRef}
+          arrowTargetRef={servicesArrowTargetRef}
         />
 
         <ProjectsStorySection
