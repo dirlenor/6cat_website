@@ -68,34 +68,30 @@ export default function ProjectsStorySection({
         ref={pinRef}
         className="relative h-screen w-full overflow-hidden bg-background-light dark:bg-background-dark"
       >
-        <div className="absolute inset-0 pointer-events-none z-20">
-          <div className="absolute left-0 right-0 top-[calc(60px+2.5rem+40px)] px-6 md:px-12">
-            <div className="projects-header-inner max-w-7xl mx-auto flex items-center gap-6">
-              <div className="flex items-center gap-3 min-w-0">
-                <h2
-                  ref={titleRef}
-                  className="text-black dark:text-white font-display text-4xl md:text-6xl font-bold min-w-0 leading-[0.9] whitespace-nowrap"
-                >
-                  {t.projects.title}
-                </h2>
-                <div
-                  ref={arrowTargetRef}
-                  className="w-10 h-10 opacity-0 pointer-events-none flex-shrink-0"
-                ></div>
-              </div>
-              <div className="hidden md:flex items-center gap-6 ml-auto">
-                <div className="h-px w-40 bg-black/30 dark:bg-white/30"></div>
-                <div className="flex flex-col text-black/70 dark:text-white/70 text-sm leading-relaxed text-right items-end">
-                  <span>{t.projects.sideLines[0]}</span>
-                  <span>{t.projects.sideLines[1]}</span>
-                </div>
-              </div>
+        <div className="projects-header-inner max-w-7xl mx-auto px-6 md:px-12 pt-10 md:pt-12 flex items-center gap-6 relative z-20">
+          <div className="flex items-center gap-3 min-w-0">
+            <h2
+              ref={titleRef}
+              className="text-black dark:text-white font-display text-4xl md:text-6xl font-bold min-w-0 leading-[0.9] whitespace-nowrap"
+            >
+              {t.projects.title}
+            </h2>
+            <div
+              ref={arrowTargetRef}
+              className="w-10 h-10 opacity-0 pointer-events-none flex-shrink-0"
+            ></div>
+          </div>
+          <div className="hidden md:flex items-center gap-6 ml-auto">
+            <div className="h-px w-40 bg-black/30 dark:bg-white/30"></div>
+            <div className="flex flex-col text-black/70 dark:text-white/70 text-sm leading-relaxed text-right items-end">
+              <span>{t.projects.sideLines[0]}</span>
+              <span>{t.projects.sideLines[1]}</span>
             </div>
           </div>
         </div>
         <div
           ref={trackRef}
-          className="project-track relative z-10 h-full flex items-end gap-6 pl-12 pr-6 md:pr-12 pb-[90px]"
+          className="project-track relative z-10 h-full flex items-start gap-6 pl-12 pr-6 md:pr-12 pt-10 md:pt-12 pb-10"
         >
           {cards.map((card, index) => (
             <article
