@@ -82,7 +82,7 @@ export default function ProjectsStorySection({
           <div className="absolute left-8 right-8 top-[calc(60px+2.5rem+40px)] flex items-center gap-6">
             <h2
               ref={titleRef}
-              className="text-white font-display text-6xl md:text-8xl lg:text-9xl font-bold opacity-0 flex-1 min-w-0 leading-[0.9]"
+              className="text-white font-display text-5xl md:text-7xl lg:text-9xl font-bold opacity-0 flex-1 min-w-0 leading-[0.9]"
             >
               {t.projects.title}
             </h2>

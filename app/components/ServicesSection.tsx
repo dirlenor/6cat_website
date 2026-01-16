@@ -168,7 +168,7 @@ export default function ServicesSection({
 
         <div ref={statsGridRef} className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
-            <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
+            <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-black dark:text-white mb-3">
               12,000+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
@@ -179,7 +179,7 @@ export default function ServicesSection({
             </div>
           </div>
           <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
-            <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
+            <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-black dark:text-white mb-3">
               89%
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
@@ -190,7 +190,7 @@ export default function ServicesSection({
             </div>
           </div>
           <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
-            <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
+            <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-black dark:text-white mb-3">
               1,200+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">
@@ -201,7 +201,7 @@ export default function ServicesSection({
             </div>
           </div>
           <div className="stat-card group relative aspect-square rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] flex flex-col justify-center">
-            <div className="text-5xl md:text-6xl font-display font-bold text-black dark:text-white mb-3">
+            <div className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-black dark:text-white mb-3">
               125+
             </div>
             <div className="text-sm text-gray-500 dark:text-neutral-400">

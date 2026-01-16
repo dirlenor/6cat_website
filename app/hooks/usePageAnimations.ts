@@ -570,14 +570,38 @@ export const usePageAnimations = ({
       },
     });
 
+    const getStartX = () => {
+      const firstCard =
+        projectsTrackRef.current?.querySelector<HTMLElement>(".project-card");
+      if (!firstCard || !projectsPinRef.current) return 0;
+      const leftOffset = firstCard.offsetLeft;
+      return -leftOffset;
+    };
+
+    const getEndX = () => {
+      if (!projectsTrackRef.current || !projectsPinRef.current) return 0;
+      const cards =
+        projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card");
+      const lastCard = cards[cards.length - 1];
+      if (!lastCard) return 0;
+      const pinWidth = projectsPinRef.current.clientWidth;
+      const lastRight = lastCard.offsetLeft + lastCard.clientWidth;
+      return pinWidth - lastRight;
+    };
+
+    const getHoldDistance = () => Math.max(0, window.innerHeight * 0.5);
+    const getScrollDistance = () =>
+      getHoldDistance() + Math.abs(getEndX() - getStartX());
+
     const resetTween = gsap.to(projectsBgRef.current, {
       opacity: 0,
       ease: "none",
       scrollTrigger: {
         trigger: projectsSectionRef.current,
-        start: "bottom top",
-        end: "bottom+=80vh top",
+        start: () => `top+=${getScrollDistance()} top`,
+        end: () => `top+=${getScrollDistance() + window.innerHeight * 0.8} top`,
         scrub: 1.8,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -631,34 +655,13 @@ export const usePageAnimations = ({
       }
     );
 
-    const getStartX = () => {
-      const firstCard =
-        projectsTrackRef.current?.querySelector<HTMLElement>(".project-card");
-      if (!firstCard || !projectsPinRef.current) return 0;
-      const leftOffset = firstCard.offsetLeft;
-      return -leftOffset;
-    };
-
-    const getEndX = () => {
-      if (!projectsTrackRef.current || !projectsPinRef.current) return 0;
-      const cards =
-        projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card");
-      const lastCard = cards[cards.length - 1];
-      if (!lastCard) return 0;
-      const pinWidth = projectsPinRef.current.clientWidth;
-      const lastRight = lastCard.offsetLeft + lastCard.clientWidth;
-      return pinWidth - lastRight;
-    };
-
-    const getHoldDistance = () => Math.max(0, window.innerHeight * 0.5);
-
     gsap.set(projectsTrackRef.current, { x: getStartX() });
 
     const horizontalTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: projectsSectionRef.current,
         start: "top top",
-        end: () => `+=${getHoldDistance() + Math.abs(getEndX() - getStartX())}`,
+        end: () => `+=${getScrollDistance()}`,
         scrub: 1,
         pin: projectsPinRef.current,
         anticipatePin: 1,
