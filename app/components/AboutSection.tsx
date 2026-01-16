@@ -10,7 +10,7 @@ type AboutSectionProps = {
 
 export default function AboutSection({ t }: AboutSectionProps) {
   return (
-    <section className="relative z-10 w-full px-6 md:px-12 py-24 md:py-32 bg-background-light dark:bg-background-dark">
+    <section className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-primary">

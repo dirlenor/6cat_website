@@ -27,7 +27,7 @@ export default function ServicesSection({
   return (
     <section
       ref={statsSectionRef}
-      className="relative z-10 w-full px-6 md:px-12 py-24 md:py-32 bg-background-light dark:bg-background-dark"
+      className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">

@@ -643,11 +643,18 @@ export const usePageAnimations = ({
       return headerRight - lastRight;
     };
 
-    const getHoldDistance = () => Math.max(0, window.innerHeight * 0.5);
-    const getScrollDistance = () =>
-      getHoldDistance() +
-      Math.abs(getEndX() - getStartX()) +
-      window.innerWidth * 0.2;
+    const getHoldDistance = () =>
+      Math.max(0, window.innerHeight * (window.innerWidth < 1024 ? 0.2 : 0.4));
+    const getScrollDistance = () => {
+      if (!projectsTrackRef.current || !projectsPinRef.current) {
+        return window.innerHeight;
+      }
+      const travelFromHeader = Math.abs(getEndX() - getStartX());
+      const trackWidth = projectsTrackRef.current.scrollWidth;
+      const pinWidth = projectsPinRef.current.clientWidth;
+      const travelFromWidth = Math.max(0, trackWidth - pinWidth);
+      return getHoldDistance() + Math.max(travelFromHeader, travelFromWidth);
+    };
 
     const projectCards = Array.from(
       projectsTrackRef.current.querySelectorAll<HTMLElement>(".project-card")

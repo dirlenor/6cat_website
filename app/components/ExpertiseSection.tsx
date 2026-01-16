@@ -57,7 +57,7 @@ export default function ExpertiseSection({
   return (
     <section
       ref={expertiseSectionRef}
-      className="relative z-20 w-full px-6 md:px-12 py-24 md:py-32"
+      className="relative z-20 w-full px-6 md:px-12 py-24"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">

@@ -10,7 +10,7 @@ type TimelineSectionProps = {
 
 export default function TimelineSection({ t }: TimelineSectionProps) {
   return (
-    <section className="relative z-10 w-full px-6 md:px-12 pt-12 md:pt-16 pb-24 md:pb-28 bg-background-light dark:bg-background-dark">
+    <section className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.35em] text-primary">
