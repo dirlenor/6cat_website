@@ -22,30 +22,34 @@ export default function HeroSection({
       ref={heroSectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
     >
-      <div className="absolute top-[calc(60px+4.25rem)] right-8 w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
-        {t.hero.cornerLines.map((line, index) => (
-          <p key={index}>
-            {line
-              .split(/(Creative|experience|ideas|สร้างสรรค์|ประสบการณ์|ไอเดีย)/g)
-              .map((part, partIndex) => {
-              if (
-                part === "Creative" ||
-                part === "experience" ||
-                part === "ideas" ||
-                part === "สร้างสรรค์" ||
-                part === "ประสบการณ์" ||
-                part === "ไอเดีย"
-              ) {
-                return (
-                  <span key={partIndex} className="font-bold text-base md:text-lg text-primary">
-                    {part}
-                  </span>
-                );
-              }
-              return <span key={partIndex}>{part}</span>;
-            })}
-          </p>
-        ))}
+      <div className="absolute top-[calc(60px+4.25rem)] left-0 w-full px-6 md:px-12">
+        <div className="max-w-7xl mx-auto flex justify-end">
+          <div className="w-[340px] text-right text-xs md:text-sm text-black/70 dark:text-white/70 leading-relaxed">
+            {t.hero.cornerLines.map((line, index) => (
+              <p key={index}>
+                {line
+                  .split(/(Creative|experience|ideas|สร้างสรรค์|ประสบการณ์|ไอเดีย)/g)
+                  .map((part, partIndex) => {
+                  if (
+                    part === "Creative" ||
+                    part === "experience" ||
+                    part === "ideas" ||
+                    part === "สร้างสรรค์" ||
+                    part === "ประสบการณ์" ||
+                    part === "ไอเดีย"
+                  ) {
+                    return (
+                      <span key={partIndex} className="font-bold text-base md:text-lg text-primary">
+                        {part}
+                      </span>
+                    );
+                  }
+                  return <span key={partIndex}>{part}</span>;
+                })}
+              </p>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="absolute inset-0 flex items-center justify-center select-none overflow-hidden pointer-events-none z-10">
         <div className="w-full overflow-hidden">
@@ -99,7 +103,8 @@ export default function HeroSection({
         </div>
       </div>
       <div className="absolute bottom-10 left-0 w-full z-20 px-6 md:px-12">
-        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-6 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 dark:text-neutral-400">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-6 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 dark:text-neutral-400">
           <div className="flex items-center gap-2 group cursor-pointer hover:text-black dark:hover:text-white transition-colors">
             <span className="flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-neutral-700 bg-white dark:bg-black group-hover:border-primary group-hover:bg-primary transition-colors"></span>
             <span>{t.heroBottom.tagline1}</span>
@@ -113,6 +118,7 @@ export default function HeroSection({
           <div className="flex items-center gap-2 group cursor-pointer hover:text-black dark:hover:text-white transition-colors">
             <span className="flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-neutral-700 bg-white dark:bg-black group-hover:border-primary group-hover:bg-primary transition-colors"></span>
             <span>{t.heroBottom.tagline3}</span>
+          </div>
           </div>
         </div>
       </div>
