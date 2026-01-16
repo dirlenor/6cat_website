@@ -21,6 +21,7 @@ const config: Config = {
       fontFamily: {
         display: ['"Space Grotesk"', "sans-serif"],
         body: ['"Inter"', "sans-serif"],
+        anuphan: ['"Anuphan"', "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "Roboto", '"Helvetica Neue"', "Arial", "sans-serif"],
       },
       borderRadius: {
         DEFAULT: "0.5rem",

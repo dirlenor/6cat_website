@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import "@fontsource/anuphan/300.css";
+import "@fontsource/anuphan/400.css";
+import "@fontsource/anuphan/500.css";
+import "@fontsource/anuphan/600.css";
+import "@fontsource/anuphan/700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,6 +26,16 @@ export default function RootLayout({
                 const theme = localStorage.getItem('theme') || 'light';
                 if (theme === 'dark') {
                   document.documentElement.classList.add('dark');
+                }
+                const language = localStorage.getItem('language') || 'en';
+                if (language === 'th') {
+                  document.documentElement.setAttribute('lang', 'th');
+                  document.documentElement.classList.add('font-thai');
+                  document.body.classList.add('font-anuphan');
+                  document.body.style.fontFamily = "Anuphan, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+                  document.body.style.fontFeatureSettings = '"liga" 1, "calt" 1';
+                  document.body.style.webkitFontSmoothing = "antialiased";
+                  document.body.style.mozFontSmoothing = "grayscale";
                 }
               })();
             `,

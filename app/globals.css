@@ -46,4 +46,28 @@
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
+  /* Apply Anuphan font when Thai language is selected - with higher specificity */
+  html.font-thai *,
+  body.font-anuphan,
+  body.font-anuphan *,
+  .font-anuphan,
+  .font-anuphan * {
+    font-family: 'Anuphan', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-feature-settings: "liga" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Override font-display when Thai is active */
+  html.font-thai .font-display,
+  body.font-anuphan .font-display {
+    font-family: 'Anuphan', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  }
+  
+  /* Keep Material Icons */
+  html.font-thai .material-icons,
+  body.font-anuphan .material-icons {
+    font-family: 'Material Icons' !important;
+  }
 }
