@@ -1,6 +1,10 @@
 "use client";
 
+import { useSiteContext } from "./SiteContext";
+
 export default function FooterSection() {
+  const { t } = useSiteContext();
+
   return (
     <footer className="relative z-10 w-full px-6 md:px-12 pb-12">
       <div className="max-w-7xl mx-auto">
@@ -14,12 +18,12 @@ export default function FooterSection() {
                   +66 82 000 0000
                 </div>
                 <div className="mt-6 text-xs font-semibold uppercase tracking-[0.35em]">
-                  Bangkok
+                  {t.footer.city}
                 </div>
                 <div className="mt-2 text-sm font-semibold">
-                  Tha-sai
+                  {t.footer.addressLine1}
                   <div className="mt-2 text-xs font-medium opacity-70">
-                    Nonthaburi 11000
+                    {t.footer.addressLine2}
                   </div>
                 </div>
               </div>
@@ -29,35 +33,38 @@ export default function FooterSection() {
                   6CAT AGENCY
                 </div>
                 <div className="mt-6 text-4xl md:text-6xl font-display font-black tracking-tight uppercase">
-                  Let's work together
+                  {t.footer.title}
                 </div>
               </div>
 
               <div className="flex flex-col items-start gap-4 text-xs font-semibold uppercase tracking-[0.25em] md:items-end">
                 <a className="hover:opacity-70 transition-opacity" href="#home">
-                  Home
+                  {t.footer.nav.home}
                 </a>
                 <a className="hover:opacity-70 transition-opacity" href="#about">
-                  About
+                  {t.footer.nav.about}
                 </a>
-                <a className="hover:opacity-70 transition-opacity" href="#services">
-                  Services
+                <a className="hover:opacity-70 transition-opacity" href="/services">
+                  {t.footer.nav.services}
+                </a>
+                <a className="hover:opacity-70 transition-opacity" href="/pricing">
+                  {t.footer.nav.pricing}
                 </a>
                 <a className="hover:opacity-70 transition-opacity" href="#projects">
-                  Projects
+                  {t.footer.nav.projects}
                 </a>
                 <a className="hover:opacity-70 transition-opacity" href="#contact">
-                  Contact
+                  {t.footer.nav.contact}
                 </a>
                 <a className="hover:opacity-70 transition-opacity" href="/policy">
-                  Policy
+                  {t.footer.nav.policy}
                 </a>
               </div>
             </div>
 
             <div className="flex flex-col gap-2 border-t border-black/15 pt-6 text-[11px] font-semibold uppercase tracking-[0.25em] md:flex-row md:items-center md:justify-between">
-              <span>2026@6CAT AGENCY</span>
-              <span>Design by 6CAT</span>
+              <span>{t.footer.copyright}</span>
+              <span>{t.footer.designBy}</span>
             </div>
           </div>
         </div>

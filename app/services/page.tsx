@@ -1,10 +1,10 @@
 import SiteScaffoldServer from "../components/SiteScaffoldServer";
-import ContactContent from "./ContactContent";
+import ServicesContent from "./ServicesContent";
 
-export default function ContactPage() {
+export default function ServicesPage() {
   return (
     <SiteScaffoldServer>
-      <ContactContent />
+      <ServicesContent />
     </SiteScaffoldServer>
   );
 }

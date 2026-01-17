@@ -1,8 +1,8 @@
-import SiteScaffold from "../components/SiteScaffold";
+import SiteScaffoldServer from "../components/SiteScaffoldServer";
 
 export default function PolicyPage() {
   return (
-    <SiteScaffold>
+    <SiteScaffoldServer>
       <main className="min-h-screen bg-background-dark text-text-dark px-6 md:px-12 py-24">
         <div className="max-w-4xl mx-auto">
         <div className="flex flex-col gap-6">
@@ -447,6 +447,6 @@ export default function PolicyPage() {
         </div>
         </div>
       </main>
-    </SiteScaffold>
+    </SiteScaffoldServer>
   );
 }

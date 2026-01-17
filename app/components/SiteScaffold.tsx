@@ -8,18 +8,12 @@ import { SiteProvider } from "./SiteContext";
 
 type SiteScaffoldProps = {
   children: React.ReactNode;
+  initialLanguage?: Language;
 };
 
-export default function SiteScaffold({ children }: SiteScaffoldProps) {
-  const [language, setLanguage] = useState<Language>("en");
+export default function SiteScaffold({ children, initialLanguage }: SiteScaffoldProps) {
+  const [language, setLanguage] = useState<Language>(initialLanguage ?? "en");
   const t = getTranslations(language);
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language | null;
-    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "th")) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
 
   const applyLanguage = (nextLanguage: Language) => {
     if (nextLanguage === "th") {
@@ -47,6 +41,7 @@ export default function SiteScaffold({ children }: SiteScaffoldProps) {
     const newLanguage = language === "en" ? "th" : "en";
     setLanguage(newLanguage);
     localStorage.setItem("language", newLanguage);
+    document.cookie = `language=${newLanguage}; path=/; max-age=31536000`;
     applyLanguage(newLanguage);
   };
 

@@ -26,7 +26,7 @@ export default function HeroSection({
     <section
       id="home"
       ref={heroSectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
+      className="relative min-h-[100svh] h-[100svh] flex items-center justify-center overflow-hidden w-full"
     >
       <HeroParticles />
       <div ref={scrollingTextRef} className="hidden" />

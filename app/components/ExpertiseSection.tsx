@@ -9,20 +9,20 @@ type ExpertiseSectionProps = {
   t: TranslationValues;
   expertiseSectionRef: React.RefObject<HTMLElement>;
   setExpertiseCardRef: (index: number, el: HTMLDivElement | null) => void;
-  arrowWrapperRef: React.RefObject<HTMLDivElement>;
-  arrowRef: React.RefObject<SVGSVGElement>;
+  expertiseArrowWrapperRef: React.RefObject<HTMLDivElement>;
+  expertiseArrowRef: React.RefObject<SVGSVGElement>;
 };
 
 export default function ExpertiseSection({
   t,
   expertiseSectionRef,
   setExpertiseCardRef,
-  arrowWrapperRef,
-  arrowRef,
+  expertiseArrowWrapperRef,
+  expertiseArrowRef,
 }: ExpertiseSectionProps) {
   useEffect(() => {
-    const arrowEl = arrowRef.current;
-    const wrapperEl = arrowWrapperRef.current;
+    const arrowEl = expertiseArrowRef.current;
+    const wrapperEl = expertiseArrowWrapperRef.current;
     if (!arrowEl || !wrapperEl) return;
 
     let rafId: number | null = null;
@@ -66,11 +66,11 @@ export default function ExpertiseSection({
               {t.expertise.title}
             </h2>
             <div
-              ref={arrowWrapperRef}
+              ref={expertiseArrowWrapperRef}
               className="ml-auto w-10 h-10 rounded-xl bg-primary flex items-center justify-center relative z-40"
             >
               <svg
-                ref={arrowRef}
+                ref={expertiseArrowRef}
                 className="w-5 h-5 text-black"
                 fill="none"
                 stroke="currentColor"
