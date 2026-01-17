@@ -572,7 +572,7 @@ export const usePageAnimations = ({
         clearInterval(checkSpans);
 
         const spanElements = Array.from(spans) as HTMLElement[];
-        const randomOffsets = spanElements.map(() => Math.random() * 150 + 50);
+        const randomOffsets = spanElements.map(() => Math.random() * 300 + 120);
 
         ScrollTrigger.create({
           trigger: heroSectionRef.current,

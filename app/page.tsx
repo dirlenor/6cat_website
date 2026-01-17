@@ -12,7 +12,6 @@ import TimelineSection from "./components/TimelineSection";
 import { usePageAnimations } from "./hooks/usePageAnimations";
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState<Language>("en");
   const t = getTranslations(language);
   const statsSectionRef = useRef<HTMLElement>(null);
@@ -35,10 +34,6 @@ export default function Home() {
   const projectsArrowTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check current theme and language on mount
-    const isDark = document.documentElement.classList.contains("dark");
-    setDarkMode(isDark);
-    
     // Load language preference from localStorage
     const savedLanguage = localStorage.getItem("language") as Language | null;
     if (savedLanguage && (savedLanguage === "en" || savedLanguage === "th")) {
@@ -64,18 +59,6 @@ export default function Home() {
     projectsPinRef,
     projectsArrowTargetRef,
   });
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    if (newDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    // Save preference to localStorage
-    localStorage.setItem("theme", newDarkMode ? "dark" : "light");
-  };
 
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "th" : "en";
@@ -132,14 +115,12 @@ export default function Home() {
 
   return (
     <div className={language === "th" ? "font-anuphan" : ""}>
-      <div className="fixed inset-0 pointer-events-none z-[1] light-mode-grid dark:dark-mode-grid grid-background w-full h-full"></div>
+      <div className="fixed inset-0 pointer-events-none z-[1] dark-mode-grid grid-background w-full h-full"></div>
 
       <SiteHeader
         language={language}
         t={t}
-        darkMode={darkMode}
         toggleLanguage={toggleLanguage}
-        toggleDarkMode={toggleDarkMode}
       />
 
       <main className="flex-grow flex flex-col relative w-full pt-20">

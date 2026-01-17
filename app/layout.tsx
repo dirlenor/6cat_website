@@ -17,16 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem('theme') || 'light';
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                }
                 const language = localStorage.getItem('language') || 'en';
                 if (language === 'th') {
                   document.documentElement.setAttribute('lang', 'th');
@@ -42,7 +38,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body min-h-screen overflow-x-hidden relative flex flex-col transition-colors duration-300">
+      <body className="bg-background-dark text-text-dark font-body min-h-screen overflow-x-hidden relative flex flex-col">
         {children}
       </body>
     </html>
