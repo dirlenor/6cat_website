@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import type { Language, Translations } from "../lib/i18n";
 
@@ -21,6 +22,8 @@ export default function SiteHeader({
   const [themeIndex, setThemeIndex] = useState(0);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const paletteRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const [hash, setHash] = useState("");
 
   const themeColors = ["195 245 60", "255 212 73", "53 197 255", "255 107 107"];
 
@@ -49,6 +52,14 @@ export default function SiteHeader({
     if (!Number.isNaN(savedIndex)) {
       applyThemeColor(savedIndex);
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const updateHash = () => setHash(window.location.hash || "");
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
   }, []);
 
   useEffect(() => {
@@ -90,29 +101,29 @@ export default function SiteHeader({
           </div>
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide absolute left-1/2 -translate-x-1/2">
             <a
-              className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#home"
+              className={`relative group hover:text-white transition-colors px-3 py-2 overflow-visible ${pathname === "/" && hash !== "#services" ? "text-primary" : ""}`}
+              href="/"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.home}</span>
             </a>
             <a
-              className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#about"
+              className={`relative group hover:text-white transition-colors px-3 py-2 overflow-visible ${pathname === "/about" ? "text-primary" : ""}`}
+              href="/about"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.about}</span>
             </a>
             <a
-              className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#services"
+              className={`relative group hover:text-white transition-colors px-3 py-2 overflow-visible ${pathname === "/" && hash === "#services" ? "text-primary" : ""}`}
+              href="/#services"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.services}</span>
             </a>
             <a
-              className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#contact"
+              className={`relative group hover:text-white transition-colors px-3 py-2 overflow-visible ${pathname === "/contact" ? "text-primary" : ""}`}
+              href="/contact"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.contact}</span>

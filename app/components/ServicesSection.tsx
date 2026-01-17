@@ -86,7 +86,7 @@ export default function ServicesSection({
           <div className="relative rounded-2xl overflow-hidden min-h-[400px] bg-gray-100 dark:bg-neutral-800">
             <div className="absolute inset-0">
               <Image
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80"
+                src="https://i.pinimg.com/736x/6e/0a/54/6e0a5489a3e19266e2bfd60d9e4f1f28.jpg"
                 alt="Creative team working together"
                 fill
                 className="object-cover"

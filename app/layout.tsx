@@ -5,6 +5,7 @@ import "@fontsource/anuphan/500.css";
 import "@fontsource/anuphan/600.css";
 import "@fontsource/anuphan/700.css";
 import "./globals.css";
+import SmoothScroll from "./components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "6CAT Agency",
@@ -23,6 +24,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                const themeColors = ["195 245 60", "255 212 73", "53 197 255", "255 107 107"];
+                const savedIndex = Number(localStorage.getItem('themeColorIndex') || 0);
+                const safeIndex = Number.isFinite(savedIndex) ? ((savedIndex % themeColors.length) + themeColors.length) % themeColors.length : 0;
+                document.documentElement.style.setProperty('--color-primary', themeColors[safeIndex]);
                 const language = localStorage.getItem('language') || 'en';
                 if (language === 'th') {
                   document.documentElement.setAttribute('lang', 'th');
@@ -39,6 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background-dark text-text-dark font-body min-h-screen overflow-x-hidden relative flex flex-col">
+        <SmoothScroll />
         {children}
       </body>
     </html>

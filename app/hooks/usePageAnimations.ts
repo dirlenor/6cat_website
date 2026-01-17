@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,48 +45,6 @@ export const usePageAnimations = ({
   projectsPinRef,
   projectsArrowTargetRef,
 }: UsePageAnimationsOptions) => {
-  const lenisRef = useRef<Lenis | null>(null);
-
-  useEffect(() => {
-    try {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
-      } as any);
-
-      lenisRef.current = lenis;
-
-      function raf(time: number) {
-        if (lenisRef.current) {
-          lenisRef.current.raf(time);
-          requestAnimationFrame(raf);
-        }
-      }
-
-      requestAnimationFrame(raf);
-
-      lenis.on("scroll", ScrollTrigger.update);
-
-      return () => {
-        try {
-          if (lenisRef.current) {
-            lenisRef.current.destroy();
-          }
-        } catch (error) {
-          console.error("Error destroying Lenis:", error);
-        }
-      };
-    } catch (error) {
-      console.error("Error initializing Lenis:", error);
-    }
-  }, []);
-
   useEffect(() => {
     if (!typingTextRef.current || !statsSectionRef.current) return;
 
