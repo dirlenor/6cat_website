@@ -206,6 +206,7 @@ export const translations = {
           name: "Landing Page",
           tag: "Single page",
           price: "4,900 THB",
+          badge: "",
           customNote: "Every project is custom. We never use templates.",
           includes: [
             "One-page landing website",
@@ -257,6 +258,7 @@ export const translations = {
           name: "Full Website + CMS",
           tag: "5 pages + CMS",
           price: "19,999 THB",
+          badge: "",
           customNote: "Every project is custom. We never use templates.",
           includes: [
             "5 pages: Home / About / Services / Portfolio (Gallery) / Contact",
@@ -745,6 +747,7 @@ export const translations = {
           name: "Landing Page",
           tag: "หน้าเดียว",
           price: "4,900 บาท",
+          badge: "",
           customNote: "ทุกงานของเราไม่ใช่เทมเพลต เราสร้างใหม่ให้ทุกเจ้า",
           includes: [
             "หน้าเว็บ 1 หน้า (Landing Page)",
@@ -796,6 +799,7 @@ export const translations = {
           name: "Full Website + CMS",
           tag: "5 หน้า + CMS",
           price: "19,999 บาท",
+          badge: "",
           customNote: "ทุกงานของเราไม่ใช่เทมเพลต เราสร้างใหม่ให้ทุกเจ้า",
           includes: [
             "เว็บไซต์ 5 หน้า: Home / About / Services / Portfolio(Gallery) / Contact",
