@@ -20,9 +20,8 @@ export const translations = {
       ],
     },
     heroBottom: {
-      tagline1: "Facebook",
-      tagline2: "Instagram",
-      tagline3: "Located at BKK",
+      marquee:
+        "Creative agency for modern brands. We craft identity, experience, and product as one. Strategy-led work that turns ideas into growth.",
     },
     about: {
       kicker: "Who We Are",
@@ -242,9 +241,8 @@ export const translations = {
       ],
     },
     heroBottom: {
-      tagline1: "Facebook",
-      tagline2: "Instagram",
-      tagline3: "ตั้งอยู่ที่ BKK",
+      marquee:
+        "Creative agency for modern brands. We craft identity, experience, and product as one. Strategy-led work that turns ideas into growth.",
     },
     about: {
       kicker: "เราเป็นใคร",
