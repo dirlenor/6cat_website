@@ -127,7 +127,6 @@ export default function HomeClient({ initialLanguage }: HomeClientProps) {
       <ExpertiseSection
         t={t}
         expertiseSectionRef={expertiseSectionRef}
-        expertiseCardsRef={expertiseCardsRef}
         setExpertiseCardRef={setExpertiseCardRef}
         expertiseArrowWrapperRef={expertiseArrowWrapperRef}
         expertiseArrowRef={expertiseArrowRef}
