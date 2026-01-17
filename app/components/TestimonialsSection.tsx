@@ -16,7 +16,7 @@ export default function TestimonialsSection({ t }: TestimonialsSectionProps) {
   const isAnimatingRef = useRef(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const totalItems = t.testimonials.items.length;
+  const totalItems = Number(t.testimonials.items.length);
   const activeItem = t.testimonials.items[activeIndex];
   const projectImages = [
     "https://i.pinimg.com/1200x/a8/65/c9/a865c917a682c6dbbc14afa5dbc6bcfa.jpg",
