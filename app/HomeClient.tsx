@@ -13,6 +13,7 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
 import { usePageAnimations } from "./hooks/usePageAnimations";
+import { SiteProvider } from "./components/SiteContext";
 
 type HomeClientProps = {
   initialLanguage: Language;
@@ -115,43 +116,45 @@ export default function HomeClient({ initialLanguage }: HomeClientProps) {
   };
 
   return (
-    <div className={language === "th" ? "font-anuphan" : ""}>
-      <SiteHeader language={language} t={t} toggleLanguage={toggleLanguage} />
-      <HeroSection
-        t={t}
-        heroSectionRef={heroSectionRef}
-        scrollingTextRef={scrollingTextRef}
-        heroTitleRef={heroTitleRef}
-      />
-      <AboutSection t={t} />
-      <ExpertiseSection
-        t={t}
-        expertiseSectionRef={expertiseSectionRef}
-        setExpertiseCardRef={setExpertiseCardRef}
-        expertiseArrowWrapperRef={expertiseArrowWrapperRef}
-        expertiseArrowRef={expertiseArrowRef}
-      />
-      <ServicesSection
-        t={t}
-        statsSectionRef={statsSectionRef}
-        statsGridRef={statsGridRef}
-        typingTextRef={typingTextRef}
-        progressBarRef={progressBarRef}
-        projectCountRef={projectCountRef}
-        arrowTargetRef={servicesArrowTargetRef}
-      />
-      <ProjectsStorySection
-        t={t}
-        sectionRef={projectsSectionRef}
-        titleRef={projectsTitleRef}
-        trackRef={projectsTrackRef}
-        pinRef={projectsPinRef}
-        arrowTargetRef={projectsArrowTargetRef}
-      />
-      <TimelineSection t={t} />
-      <TestimonialsSection t={t} />
-      <ContactSection t={t} />
-      <FooterSection />
-    </div>
+    <SiteProvider value={{ language, t, toggleLanguage }}>
+      <div className={language === "th" ? "font-anuphan" : ""}>
+        <SiteHeader language={language} t={t} toggleLanguage={toggleLanguage} />
+        <HeroSection
+          t={t}
+          heroSectionRef={heroSectionRef}
+          scrollingTextRef={scrollingTextRef}
+          heroTitleRef={heroTitleRef}
+        />
+        <AboutSection t={t} />
+        <ExpertiseSection
+          t={t}
+          expertiseSectionRef={expertiseSectionRef}
+          setExpertiseCardRef={setExpertiseCardRef}
+          expertiseArrowWrapperRef={expertiseArrowWrapperRef}
+          expertiseArrowRef={expertiseArrowRef}
+        />
+        <ServicesSection
+          t={t}
+          statsSectionRef={statsSectionRef}
+          statsGridRef={statsGridRef}
+          typingTextRef={typingTextRef}
+          progressBarRef={progressBarRef}
+          projectCountRef={projectCountRef}
+          arrowTargetRef={servicesArrowTargetRef}
+        />
+        <ProjectsStorySection
+          t={t}
+          sectionRef={projectsSectionRef}
+          titleRef={projectsTitleRef}
+          trackRef={projectsTrackRef}
+          pinRef={projectsPinRef}
+          arrowTargetRef={projectsArrowTargetRef}
+        />
+        <TimelineSection t={t} />
+        <TestimonialsSection t={t} />
+        <ContactSection t={t} />
+        <FooterSection />
+      </div>
+    </SiteProvider>
   );
 }
