@@ -9,6 +9,8 @@ import ExpertiseSection from "./components/ExpertiseSection";
 import ServicesSection from "./components/ServicesSection";
 import ProjectsStorySection from "./components/ProjectsStorySection";
 import TimelineSection from "./components/TimelineSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import ContactSection from "./components/ContactSection";
 import { usePageAnimations } from "./hooks/usePageAnimations";
 
 export default function Home() {
@@ -161,6 +163,10 @@ export default function Home() {
         />
 
         <TimelineSection t={t} />
+
+        <TestimonialsSection t={t} />
+
+        <ContactSection t={t} />
 
       </main>
     </div>

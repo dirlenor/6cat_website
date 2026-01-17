@@ -32,7 +32,7 @@ export default function ServicesSection({
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
           <div className="flex items-center gap-4">
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white uppercase tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-black dark:text-white tracking-tight">
               {t.services.title}
             </h2>
             <div

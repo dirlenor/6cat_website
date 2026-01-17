@@ -50,7 +50,7 @@ export const translations = {
       ],
     },
     expertise: {
-      title: "Our Expertise",
+      title: "Our expertise",
       brandStrategy: {
         title: "Brand Strategy",
         description: "Defining the core of your business to create a lasting impact and meaningful connections.",
@@ -69,7 +69,7 @@ export const translations = {
       },
     },
     services: {
-      title: "Our Services",
+      title: "Our services",
       creativeMode: "Creative Mode",
       teamProjects: "Team & Individual Projects",
       projectsDelivered: "Projects Delivered",
@@ -135,6 +135,52 @@ export const translations = {
           timeline: "1-2 months",
         },
       ],
+    },
+    testimonials: {
+      kicker: "Client Love",
+      title: "What our clients say",
+      description:
+        "Small teams, big outcomes. Here is how founders describe working with us.",
+      items: [
+        {
+          name: "Nora Jensen",
+          role: "Founder, Atlas Studio",
+          quote:
+            "They brought structure to the chaos and still kept the creative soul intact.",
+        },
+        {
+          name: "Kavin R.",
+          role: "Head of Product, Lumen Health",
+          quote:
+            "Fast, thoughtful, and always aligned with the business goal.",
+        },
+        {
+          name: "Mayu Tan",
+          role: "Marketing Lead, Northwave",
+          quote:
+            "We finally have a system that scales without losing our voice.",
+        },
+      ],
+    },
+    contact: {
+      kicker: "Let’s Talk",
+      title: "Ready to build something real?",
+      description:
+        "Tell us about your goals and we will map the next best step together.",
+      quickLabel: "Response time",
+      quickTitle: "We reply within 24 hours.",
+      quickDescription:
+        "Expect a short call and a clear proposal tailored to your scope.",
+      form: {
+        nameLabel: "Name",
+        namePlaceholder: "Your name",
+        emailLabel: "Email",
+        emailPlaceholder: "your@email.com",
+        messageLabel: "Project details",
+        messagePlaceholder: "Tell us about your project and timeline.",
+        submit: "Send inquiry",
+        disclaimer: "By submitting, you agree to be contacted by our team.",
+      },
     },
   },
   th: {
@@ -271,6 +317,52 @@ export const translations = {
           timeline: "1-2 เดือน",
         },
       ],
+    },
+    testimonials: {
+      kicker: "เสียงจากลูกค้า",
+      title: "ความประทับใจจากลูกค้า",
+      description:
+        "ทีมเล็กที่โฟกัสชัด ผลลัพธ์จริง นี่คือสิ่งที่ลูกค้าพูดถึงเรา",
+      items: [
+        {
+          name: "Nora Jensen",
+          role: "ผู้ก่อตั้ง, Atlas Studio",
+          quote:
+            "พวกเขาจัดระบบให้ชัดเจน แต่ยังรักษาความคิดสร้างสรรค์ไว้ครบ",
+        },
+        {
+          name: "Kavin R.",
+          role: "หัวหน้าฝ่ายผลิตภัณฑ์, Lumen Health",
+          quote:
+            "ทำงานเร็ว คิดลึก และโฟกัสเป้าหมายทางธุรกิจเสมอ",
+        },
+        {
+          name: "Mayu Tan",
+          role: "หัวหน้าการตลาด, Northwave",
+          quote:
+            "ตอนนี้เรามีระบบที่ขยายได้โดยไม่เสียเสียงของแบรนด์",
+        },
+      ],
+    },
+    contact: {
+      kicker: "คุยกันเลย",
+      title: "พร้อมเริ่มงานร่วมกันไหม",
+      description:
+        "เล่าความต้องการของคุณ แล้วเราจะช่วยวางขั้นตอนที่เหมาะที่สุด",
+      quickLabel: "เวลาตอบกลับ",
+      quickTitle: "ตอบกลับภายใน 24 ชั่วโมง",
+      quickDescription:
+        "เราจะติดต่อกลับพร้อมแนวทางและข้อเสนอที่ชัดเจน",
+      form: {
+        nameLabel: "ชื่อ",
+        namePlaceholder: "ชื่อของคุณ",
+        emailLabel: "อีเมล",
+        emailPlaceholder: "your@email.com",
+        messageLabel: "รายละเอียดโปรเจค",
+        messagePlaceholder: "เล่าขอบเขตงานและไทม์ไลน์คร่าว ๆ",
+        submit: "ส่งข้อความ",
+        disclaimer: "การส่งฟอร์มนี้หมายถึงคุณยินยอมให้ทีมติดต่อกลับ",
+      },
     },
   },
 } as const;
