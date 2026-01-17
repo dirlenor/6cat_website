@@ -90,7 +90,7 @@ export default function ExpertiseSection({
             ref={(el) => setExpertiseCardRef(0, el)}
             className="group expertise-card relative flex flex-col justify-between h-full min-h-[200px] border-t border-transparent hover:border-primary transition-all duration-300 pt-6"
           >
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_#C3F53C] transition-all duration-300"></div>
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_rgb(var(--color-primary))] transition-all duration-300"></div>
             <div className="flex justify-between items-start mb-6">
               <span className="expertise-number text-6xl md:text-7xl font-display font-bold text-gray-200 dark:text-neutral-800 select-none">
                 01
@@ -122,7 +122,7 @@ export default function ExpertiseSection({
             ref={(el) => setExpertiseCardRef(1, el)}
             className="group expertise-card relative flex flex-col justify-between h-full min-h-[200px] border-t border-transparent hover:border-primary transition-all duration-300 pt-6"
           >
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_#C3F53C] transition-all duration-300"></div>
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_rgb(var(--color-primary))] transition-all duration-300"></div>
             <div className="flex justify-between items-start mb-6">
               <span className="expertise-number text-6xl md:text-7xl font-display font-bold text-gray-200 dark:text-neutral-800 select-none">
                 02
@@ -154,7 +154,7 @@ export default function ExpertiseSection({
             ref={(el) => setExpertiseCardRef(2, el)}
             className="group expertise-card relative flex flex-col justify-between h-full min-h-[200px] border-t border-transparent hover:border-primary transition-all duration-300 pt-6"
           >
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_#C3F53C] transition-all duration-300"></div>
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_rgb(var(--color-primary))] transition-all duration-300"></div>
             <div className="flex justify-between items-start mb-6">
               <span className="expertise-number text-6xl md:text-7xl font-display font-bold text-gray-200 dark:text-neutral-800 select-none">
                 03
@@ -186,7 +186,7 @@ export default function ExpertiseSection({
             ref={(el) => setExpertiseCardRef(3, el)}
             className="group expertise-card relative flex flex-col justify-between h-full min-h-[200px] border-t border-transparent hover:border-primary transition-all duration-300 pt-6"
           >
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_#C3F53C] transition-all duration-300"></div>
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-200 dark:bg-neutral-800 group-hover:bg-primary group-hover:shadow-[0_0_10px_rgb(var(--color-primary))] transition-all duration-300"></div>
             <div className="flex justify-between items-start mb-6">
               <span className="expertise-number text-6xl md:text-7xl font-display font-bold text-gray-200 dark:text-neutral-800 select-none">
                 04

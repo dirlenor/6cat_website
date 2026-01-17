@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import type { Language, Translations } from "../lib/i18n";
 
 type TranslationValues = Translations[Language];
@@ -17,6 +18,21 @@ export default function SiteHeader({
   toggleLanguage,
 }: SiteHeaderProps) {
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+  const [themeIndex, setThemeIndex] = useState(0);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const paletteRef = useRef<HTMLDivElement>(null);
+
+  const themeColors = ["195 245 60", "255 212 73", "53 197 255", "255 107 107"];
+
+  const applyThemeColor = (index: number) => {
+    const nextIndex = ((index % themeColors.length) + themeColors.length) % themeColors.length;
+    const color = themeColors[nextIndex];
+    document.documentElement.style.setProperty("--color-primary", color);
+    document.body.style.setProperty("--color-primary", color);
+    localStorage.setItem("themeColorIndex", String(nextIndex));
+    setThemeIndex(nextIndex);
+    setIsThemeMenuOpen(false);
+  };
 
   useEffect(() => {
     const updateSize = () => {
@@ -27,6 +43,35 @@ export default function SiteHeader({
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
+
+  useEffect(() => {
+    const savedIndex = Number(localStorage.getItem("themeColorIndex") || 0);
+    if (!Number.isNaN(savedIndex)) {
+      applyThemeColor(savedIndex);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isThemeMenuOpen || !paletteRef.current) return;
+    const swatches = paletteRef.current.querySelectorAll("button");
+    gsap.fromTo(
+      paletteRef.current,
+      { opacity: 0, scale: 0.8, y: -6 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.28, ease: "power2.inOut" }
+    );
+    gsap.fromTo(
+      swatches,
+      { opacity: 0, scale: 0.6, y: -6 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.32,
+        ease: "power2.inOut",
+        stagger: 0.05,
+      }
+    );
+  }, [isThemeMenuOpen]);
 
   return (
     <header
@@ -81,6 +126,36 @@ export default function SiteHeader({
             >
               {language === "en" ? "TH" : "EN"}
             </button>
+            <div className="relative">
+              <button
+                className="p-2.5 rounded-full border border-white/15 bg-white/10 hover:bg-white/20 transition-all"
+                onClick={() => setIsThemeMenuOpen((open) => !open)}
+                title="Change theme color"
+                aria-label="Change theme color"
+              >
+                <span
+                  className="block h-4 w-4 rounded-full"
+                  style={{ backgroundColor: `rgb(${themeColors[themeIndex]})` }}
+                ></span>
+              </button>
+              {isThemeMenuOpen && (
+                <div
+                  ref={paletteRef}
+                  className="absolute right-0 mt-3 flex items-center gap-2 rounded-full border border-white/10 bg-black/80 px-3 py-2 backdrop-blur origin-top-right"
+                >
+                  {themeColors.map((color, index) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() => applyThemeColor(index)}
+                      className="h-5 w-5 rounded-full border border-white/20 hover:scale-110 transition-transform"
+                      style={{ backgroundColor: `rgb(${color})` }}
+                      aria-label={`Theme color ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
             <a
               className="flex items-center gap-2 px-6 py-2.5 bg-white text-black rounded-full font-medium text-sm hover:scale-105 transition-transform group"
               href="#"

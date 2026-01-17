@@ -6,6 +6,12 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @layer base {
+  :root {
+    --color-primary: 195 245 60;
+  }
+}
+
+@layer base {
   .bg-text-outline {
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
     color: transparent;
@@ -42,7 +48,7 @@
     width: 14px;
     height: 14px;
     border-radius: 9999px;
-    border: 1px solid rgba(195, 245, 60, 0.6);
+    border: 1px solid rgb(var(--color-primary) / 0.6);
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0;
     animation: about-pulse 3s ease-out infinite;
@@ -75,7 +81,7 @@
     width: 14px;
     height: 14px;
     border-radius: 9999px;
-    border: 1px solid rgba(195, 245, 60, 0.6);
+    border: 1px solid rgb(var(--color-primary) / 0.6);
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0;
     animation: about-pulse 3s ease-out infinite;

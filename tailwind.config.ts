@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#C3F53C", // Neon Green
+        primary: "rgb(var(--color-primary) / <alpha-value>)", // Theme accent
         "background-light": "#FFFFFF",
         "background-dark": "#000000",
         "text-light": "#111111",
