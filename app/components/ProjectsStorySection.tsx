@@ -61,6 +61,7 @@ export default function ProjectsStorySection({
 
   return (
     <section
+      id="projects"
       ref={sectionRef}
       className="relative min-h-screen w-full px-6 md:px-12 pt-12 pb-24 bg-background-light dark:bg-background-dark"
     >

@@ -10,7 +10,10 @@ type ContactSectionProps = {
 
 export default function ContactSection({ t }: ContactSectionProps) {
   return (
-    <section className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark">
+    <section
+      id="contact"
+      className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
           <div>

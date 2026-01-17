@@ -46,28 +46,28 @@ export default function SiteHeader({
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide absolute left-1/2 -translate-x-1/2">
             <a
               className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#"
+              href="#home"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.home}</span>
             </a>
             <a
               className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#"
+              href="#about"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.about}</span>
             </a>
             <a
               className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#"
+              href="#services"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.services}</span>
             </a>
             <a
               className="relative group hover:text-white transition-colors px-3 py-2 overflow-visible"
-              href="#"
+              href="#contact"
             >
               <div className="nav-box absolute top-0 left-0 w-[120%] h-full bg-primary rounded-md -z-10 -translate-x-[10%]"></div>
               <span className="relative z-10">{t.nav.contact}</span>

@@ -26,6 +26,7 @@ export default function ServicesSection({
 }: ServicesSectionProps) {
   return (
     <section
+      id="services"
       ref={statsSectionRef}
       className="relative z-10 w-full px-6 md:px-12 py-24 bg-background-light dark:bg-background-dark"
     >

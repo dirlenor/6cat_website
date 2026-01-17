@@ -110,7 +110,7 @@ export default function ExpertiseSection({
               </div>
             </div>
             <div>
-              <h3 className="text-3xl md:text-5xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl md:text-4xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
                 {t.expertise.brandStrategy.title}
               </h3>
               <p className="mt-4 text-gray-500 dark:text-neutral-400 text-sm md:text-base leading-relaxed max-w-sm">
@@ -142,7 +142,7 @@ export default function ExpertiseSection({
               </div>
             </div>
             <div>
-              <h3 className="text-3xl md:text-5xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl md:text-4xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
                 {t.expertise.uiux.title}
               </h3>
               <p className="mt-4 text-gray-500 dark:text-neutral-400 text-sm md:text-base leading-relaxed max-w-sm">
@@ -174,7 +174,7 @@ export default function ExpertiseSection({
               </div>
             </div>
             <div>
-              <h3 className="text-3xl md:text-5xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl md:text-4xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
                 {t.expertise.development.title}
               </h3>
               <p className="mt-4 text-gray-500 dark:text-neutral-400 text-sm md:text-base leading-relaxed max-w-sm">
@@ -206,7 +206,7 @@ export default function ExpertiseSection({
               </div>
             </div>
             <div>
-              <h3 className="text-3xl md:text-5xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl md:text-4xl font-display font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
                 {t.expertise.digitalMarketing.title}
               </h3>
               <p className="mt-4 text-gray-500 dark:text-neutral-400 text-sm md:text-base leading-relaxed max-w-sm">

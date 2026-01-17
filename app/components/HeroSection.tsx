@@ -21,6 +21,7 @@ export default function HeroSection({
 
   return (
     <section
+      id="home"
       ref={heroSectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden w-full -mt-20"
     >
