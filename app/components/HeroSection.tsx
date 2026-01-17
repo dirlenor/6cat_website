@@ -1,5 +1,7 @@
 "use client";
 
+import Lottie from "lottie-react";
+import spaceCatAnimation from "../../lottie/Space Cat.json";
 import type { Language, Translations } from "../lib/i18n";
 
 type TranslationValues = Translations[Language];
@@ -35,6 +37,11 @@ export default function HeroSection({
               6CAT AGENCY
             </h1>
           </div>
+        </div>
+      </div>
+      <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+        <div className="h-full w-full">
+          <Lottie animationData={spaceCatAnimation} loop={true} />
         </div>
       </div>
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
